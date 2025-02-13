@@ -19,7 +19,7 @@ function SemesterCalculator() {
   return (
     <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Semester Exam Calculator</h2>
-      <p className = "mt-[-10px]"> Assumes that the final is worth 15% of your average.</p>
+      <p className = "mt-[-10px] mb-2"> Assumes that the final is worth 15% of your average.</p>
       <input
         type="number"
         placeholder="1st SW"

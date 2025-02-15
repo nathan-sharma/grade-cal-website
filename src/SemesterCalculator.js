@@ -5,6 +5,7 @@ function SemesterCalculator() {
   const [sw2, setSw2] = useState('');
   const [sw3, setSw3] = useState('');
   const [results, setResults] = useState(null);
+  const average = (parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3;
 
   const calculate = () => {
     const average = (parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3;
@@ -19,13 +20,12 @@ function SemesterCalculator() {
   return (
     <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Semester Exam Calculator</h2>
-      <p className = "mt-[-10px]"> Assumes that the final is worth 15% of your average.</p>
       <input
         type="number"
         placeholder="1st SW"
         value={sw1}
         onChange={e => setSw1(e.target.value)}
-        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full mt-2"
+        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
         type="number"
@@ -76,6 +76,7 @@ function SemesterCalculator() {
               : results.to_pass.toFixed(2)}
           </p>
           <p>Best case scenario: your average is a(n) {results.skibidi_toilet.toFixed(2)}</p>
+          <p>Average with exemption: {average.toFixed(2)} </p>
         </div>
       )}
     </div>

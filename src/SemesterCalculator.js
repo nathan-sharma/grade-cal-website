@@ -67,7 +67,7 @@ function SemesterCalculator() {
               ? "✅ Guaranteed"
               : results.get_a_b.toFixed(2)}
           </p>
-          <p className = "my-1">
+          <p>
             Minimum needed to pass:{" "}
             {results.to_pass > 100
               ? "❌ Impossible"
@@ -75,8 +75,8 @@ function SemesterCalculator() {
               ? "✅ Guaranteed"
               : results.to_pass.toFixed(2)}
           </p>
-          <p>Best case scenario: your average is a(n) {results.skibidi_toilet.toFixed(2)}</p>
-          <p>Average with exemption: {average.toFixed(2)} </p>
+          <p className = "my-1">Best case scenario: your average is a(n) {results.skibidi_toilet.toFixed(2)}</p>
+          <p className>Average with exemption: {average.toFixed(2)} </p>
         </div>
       )}
     </div>

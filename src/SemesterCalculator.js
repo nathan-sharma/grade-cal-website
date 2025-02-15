@@ -25,7 +25,7 @@ function SemesterCalculator() {
         placeholder="1st SW"
         value={sw1}
         onChange={e => setSw1(e.target.value)}
-        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
+        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full mt-2"
       />
       <input
         type="number"

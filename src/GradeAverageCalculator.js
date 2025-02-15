@@ -35,7 +35,7 @@ function GradeAverageCalculator() {
       className="border border-gray-300 rounded px-3 py-2 mb-2 w-full" />
       <input type="text" placeholder="Other Grades" value={others} onChange={e => setOthers(e.target.value)} 
       className="border border-gray-300 rounded px-3 py-2 mb-2 w-full mb-4"/>
-      <button className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"onClick={calculateAverage}>Calculate class average</button>
+      <button className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mb-4"onClick={calculateAverage}>Calculate class average</button>
 
       {results && (
         <div>

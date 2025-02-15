@@ -28,7 +28,7 @@ function App() {
               GPA Calculator
             </button>
             <button
-              className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out"
+              className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded shadow-md transition duration-300 ease-in-out"
               onClick={() => setCalculatorType('grades')}
             >
               Class Average Calculator

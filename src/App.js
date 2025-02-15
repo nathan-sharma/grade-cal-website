@@ -10,25 +10,25 @@ function App() {
   return (
     <div className="App flex flex-col items-center h-screen justify-center bg-gray-200">
       <h1 className="text-blue-500 text-3xl text-center font-bold font-sans py-4">Katy ISD Grade Calculator</h1>
-      <p className="font-extrabold mt-[-10px]"> By Nathan Sharma</p>
+      <p className="font-extrabold mt-[-10px] mb-1"> By Nathan Sharma</p>
 
       <div className="mt-3 border border-gray-300 p-8 rounded shadow-md">
         {!calculatorType && (
           <div className="flex flex-col space-y-4">
             <button
-              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded w-full"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out"
               onClick={() => setCalculatorType('semester')}
             >
               Semester Exam Calculator
             </button>
             <button
-              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded w-full"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out"
               onClick={() => setCalculatorType('gpa')}
             >
               GPA Calculator
             </button>
             <button
-              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded w-full"
+              className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out"
               onClick={() => setCalculatorType('grades')}
             >
               Class Average Calculator
@@ -41,14 +41,14 @@ function App() {
 
         {calculatorType && (
           <button
-            className="rounded mt-4 bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-4 mr-4"
+            className="rounded mt-4 bg-gray-500 hover:bg-gray-900 text-white font-bold py-2 px-4 mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition duration-300 ease-in-out"
             onClick={() => setCalculatorType(null)}
           >
             Back to Menu
           </button>
         )}
         <button
-          className={`rounded mt-4 bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-4 ml-auto ${!calculatorType ? 'w-full' : ''}`}
+          className={`rounded mt-4 ml-auto bg-gray-500 hover:bg-gray-900 text-white font-bold py-2 px-4 mr-4 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition duration-300 ease-in-out ${!calculatorType ? 'w-full' : ''}`}
           onClick={() => setShowHowToUse(true)} // Open pop-up
         >
           How to use

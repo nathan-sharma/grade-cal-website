@@ -38,7 +38,7 @@ function Feedback() {
       <Navbar setShowHowToUse={setShowHowToUse} />
       <h2 className="text-2xl font-semibold mb-4 mt-10">Feedback</h2>
 
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto w-full">
+      <form onSubmit={handleSubmit} className="px-4 md:px-8 max-w-md mx-auto w-full">
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Name (Optional)

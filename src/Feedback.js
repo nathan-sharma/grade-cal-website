@@ -1,31 +1,41 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
 function Feedback() {
-  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [showHowToUse, setShowHowToUse] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({ name, email, message });
-    alert("Thanks for the feedback"); 
+    try {
+      const response = await fetch('http://localhost:5000/api/feedback', { // Replace with your backend URL if needed
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (response.ok) {
+        alert('Feedback sent successfully!');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.error || 'Failed to send feedback.'}`);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      alert('An unexpected error occurred.');
+    }
   };
 
   return (
     <div className="App flex flex-col items-center justify-start">
       <Navbar setShowHowToUse={setShowHowToUse} />
-      <img
-        src="/meme.jpg"
-        alt="Katy ISD Grade Calculator Logo"
-        className="h-50 w-50 mx-auto my-auto mt-6"
-        style={{ marginBottom: '-2px' }}
-      />
-      <p className="text-red-600 font-bold text-xl mt-5">Work in progress (not functional yet)</p>
-
       <h2 className="text-2xl font-semibold mb-4 mt-10">Feedback</h2>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto w-full">
@@ -57,7 +67,7 @@ function Feedback() {
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-5">
           <label htmlFor="message" className="block text-sm font-medium text-gray-700">
             Feedback
           </label>
@@ -68,20 +78,20 @@ function Feedback() {
             rows="4"
             className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
             placeholder="Your Feedback"
-            required 
+            required
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+          className="mb-10 bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
         >
           Submit Feedback
         </button>
       </form>
       {showHowToUse && (
         <div
-          className="fixed top-0 left-0 p-8 w-full h-full bg-black bg-opacity-50 z-999 flex justify-center items-center overflow-y-auto"
+          className="fixed top-0 left-0 p-8 w-auto h-full bg-black bg-opacity-50 z-999 flex justify-center items-center overflow-y-auto"
           onClick={() => setShowHowToUse(false)}
         >
           <div

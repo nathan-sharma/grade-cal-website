@@ -52,6 +52,13 @@ function Navbar({ setShowHowToUse }) {
             isOpen ? 'block' : 'hidden'
           } md:flex md:items-center md:space-x-4 w-full md:w-auto mt-2 md:mt-0 md:justify-end`}
         >
+          <Link
+            to="/"
+            className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
+            onClick={() => setIsOpen(false)}
+          >
+            Home
+          </Link>
           <button
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
             onClick={() => {

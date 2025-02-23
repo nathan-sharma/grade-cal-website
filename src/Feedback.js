@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 function Feedback() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
-  const handleGoHome = () => {
-    navigate('/');
-  };
+  const [showHowToUse, setShowHowToUse] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,23 +18,19 @@ function Feedback() {
   };
 
   return (
-    <div className="text-center p-4">
-        <img
+    <div className="App flex flex-col items-center justify-start">
+      <Navbar setShowHowToUse={setShowHowToUse} />
+      <img
         src="/meme.jpg"
         alt="Katy ISD Grade Calculator Logo"
         className="h-50 w-50 mx-auto my-auto mt-6"
         style={{ marginBottom: '-2px' }}
       />
-      <p className = "text-red-600 text-bold text-underline text-xl mt-5">⚠️ This page is a work in progress</p>
-      <button
-        className="bg-blue-600 hover:bg-blue-900 text-white font-bold px-4 py-1 rounded mt-4"
-        onClick={handleGoHome}
-      >
-        BACK TO HOME PAGE
-      </button>
+      <p className="text-red-600 font-bold text-xl mt-5">Work in progress (not functional yet)</p>
+
       <h2 className="text-2xl font-semibold mb-4 mt-10">Feedback</h2>
 
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto w-full">
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Name (Optional)
@@ -82,11 +76,33 @@ function Feedback() {
 
         <button
           type="submit"
-          className="bg-gray-500 hover:bg-gray-100 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+          className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
         >
           Submit Feedback
         </button>
       </form>
+      {showHowToUse && (
+        <div
+          className="fixed top-0 left-0 p-8 w-full h-full bg-black bg-opacity-50 z-999 flex justify-center items-center overflow-y-auto"
+          onClick={() => setShowHowToUse(false)}
+        >
+          <div
+            className="bg-white p-8 rounded shadow-md z-1000 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="font-extrabold">How to use the calculators</h2>
+            <p className="mt-4 text-sm">Semester Calculator: Input your six weeks averages for any class into the SW fields. </p>
+            <p className="mt-3 text-sm">GPA Calculator: Enter your grades in the following format: Letter grade(Number of semesters), separated by commas. For each letter grade, enter the number of semesters you earned that grade. For example, if I earned an A for 2 semesters, a B for 3 semesters, a C for 3 semesters, and a D for 0 semesters in all the 5.0 courses I have taken so far, I would enter A(2), B(3), C(3) in the KAP/AP placeholder. If you took high school credit courses in middle school, include those grades and semesters in your calculation.</p>
+            <p className="mt-3 text-sm">Class Average Calculator: Input your grades separated by commas or their averages into each category. You can also use this as a what if calculator to see what you need to get the average you're aiming for. </p>
+            <button
+              className="bg-blue-600 hover:bg-blue-900 text-white font-bold px-4 py-1 rounded mt-4"
+              onClick={() => setShowHowToUse(false)}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

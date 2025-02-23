@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App flex flex-col items-center min-h-screen justify-start bg-gray-200"> 
      <Navbar setShowHowToUse={setShowHowToUse} />
-      <div className="mt-6 border border-gray-300 p-8 rounded shadow-md w-30"> {/* Added max-w-lg to constrain width */}
+      <div className="mt-6 p-8 w-30 h-full"> 
         <div className="flex flex-col space-y-8">
           <div>
             <SemesterCalculator />

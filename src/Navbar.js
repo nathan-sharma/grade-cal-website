@@ -6,7 +6,7 @@ function Navbar({ setShowHowToUse }) {
 
   return (
     <nav className="bg-blue-900 p-4 w-full">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className=" flex justify-between items-center">
       <div className={`flex items-center ${isOpen ? 'hidden' : 'flex'}`}>
           <Link to="/">
             <img
@@ -50,7 +50,7 @@ function Navbar({ setShowHowToUse }) {
         <div
           className={`${
             isOpen ? 'block' : 'hidden'
-          } md:flex md:items-center md:space-x-4 w-full md:w-auto mt-2 md:mt-0`}
+          } md:flex md:items-center md:space-x-4 w-full md:w-auto mt-2 md:mt-0 md:justify-end`}
         >
           <button
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"

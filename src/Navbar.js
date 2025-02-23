@@ -59,7 +59,7 @@ function Navbar({ setShowHowToUse }) {
               setIsOpen(false);
             }}
           >
-            How to use
+            How to Use
           </button>
           <Link
             to="/feedback"

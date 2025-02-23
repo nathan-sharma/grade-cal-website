@@ -63,7 +63,7 @@ function GPACalculator() {
 
   return (
     <div className="p-8 bg-white">
-      <h2 className="text-2xl font-bold mb-4">GPA Calculator</h2>
+      <h2 className="text-2xl font-bold mb-4">GPA</h2>
       <input
         type="text"
         placeholder="ACA (4.0) courses"

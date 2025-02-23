@@ -12,9 +12,7 @@ function Feedback() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({ name, email, message });
-    // In a real app, you'd send this data to a server
-    // and handle success/error states.
-    alert("Thanks for the feedback"); //temporary alert.
+    alert("Thanks for the feedback"); 
   };
 
   return (
@@ -70,7 +68,7 @@ function Feedback() {
             rows="4"
             className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
             placeholder="Your Feedback"
-            required //make feedback required.
+            required 
           ></textarea>
         </div>
 

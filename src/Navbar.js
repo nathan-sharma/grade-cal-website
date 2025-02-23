@@ -11,13 +11,13 @@ function Navbar({ setShowHowToUse }) {
           <Link to="/">
             <img
               src="/A-192x192.png"
-              alt="Katy ISD Grade Calculator Logo"
+              alt="KISD Grade Calculator Logo"
               className="h-8 mr-3"
               style={{ marginBottom: '-2px' }}
             />
           </Link>
           <Link to="/" className="text-white font-bold text-xl">
-            Katy ISD Grade Calculator
+            Katy Grade Calc
           </Link>
         </div>
         {/* Hamburger Button */}

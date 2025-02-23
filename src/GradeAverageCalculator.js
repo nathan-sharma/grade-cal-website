@@ -7,6 +7,9 @@ function GradeAverageCalculator() {
   const [results, setResults] = useState(null);
 
   const calculateAverage = () => {
+    if (results) {
+      setResults(null);
+    } else {
     const calculateAverageForCategory = (gradesString) => {
       if (!gradesString) return 0; // Handle empty input
       const gradesList = gradesString.split(',').map(grade => parseFloat(grade.trim()));
@@ -24,7 +27,7 @@ function GradeAverageCalculator() {
     const finalAvgAp = 0.7 * avgMajors + 0.2 * avgMinors + 0.1 * avgOthers;
 
     setResults({ kap: finalAvgKap, aca: finalAvgAca, ap: finalAvgAp });
-  };
+  };}
 
   return (
     <div  className="bg-white p-8">
@@ -35,7 +38,7 @@ function GradeAverageCalculator() {
       className="border border-gray-300 rounded px-3 py-2 mb-2 w-full" />
       <input type="text" placeholder="Other Grades" value={others} onChange={e => setOthers(e.target.value)} 
       className="border border-gray-300 rounded px-3 py-2 mb-2 w-full mb-4"/>
-      <button className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mb-4"onClick={calculateAverage}>Calculate class average</button>
+      <button className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mb-4"onClick={calculateAverage}>Calculate</button>
 
       {results && (
         <div>

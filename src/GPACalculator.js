@@ -6,6 +6,7 @@ function GPACalculator() {
   const [weightedGpa, setWeightedGpa] = useState(null);
 
   const calculatePoints = (gradesString, letterValues) => {
+    
     let points = 0;
     let count = 0;
     let hasError = false;
@@ -37,6 +38,10 @@ function GPACalculator() {
   };
 
   const calculateGPA = () => {
+    if (weightedGpa !== null) {
+      setWeightedGpa(null);
+      return;
+    }
     const acaLetters = { A: 4, B: 3, C: 2, D: 1, F: 0 };
     const kapApLetters = { A: 5, B: 4, C: 3, D: 2, F: 0 };
 
@@ -74,7 +79,7 @@ function GPACalculator() {
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
       <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
-        Calculate GPA
+        Calculate
       </button>
 
       {weightedGpa !== null && (

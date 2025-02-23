@@ -10,7 +10,7 @@ function Feedback() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://gradecalwebsite.onrender.com', { // Replace with your backend URL if needed
+      const response = await fetch('https://gradecalwebsite.onrender.com/api/feedback', { // Replace with your backend URL if needed
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

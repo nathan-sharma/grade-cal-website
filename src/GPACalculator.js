@@ -20,7 +20,7 @@ function GPACalculator() {
           const num = parseInt(parts[1].replace(')', ''));
 
           if (isNaN(num)) {
-            alert(`Invalid input: ${entry}. See how to use for more info.`);
+            alert(`Invalid input: ${entry}. See how to use (in the navbar) for more info.`);
             hasError = true;
             break;
           } else {
@@ -28,7 +28,7 @@ function GPACalculator() {
             count += num;
           }
         } else {
-          alert(`Invalid format: ${entry}. See how to use for more info.`);
+          alert(`Invalid format: ${entry}. See how to use (in the navbar) for more info.`);
           hasError = true;
           break;
         }

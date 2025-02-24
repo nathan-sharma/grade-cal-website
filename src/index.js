@@ -1,3 +1,8 @@
+if (sessionStorage.redirected) {
+  sessionStorage.removeItem('redirected');
+  console.log("Redirected from 404, now handling route.");
+}
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import routing components

@@ -59,15 +59,13 @@ function Navbar({ setShowHowToUse }) {
           >
             Home
           </Link>
-          <button
+          <Link
+          to="/how-to-use"
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
-            onClick={() => {
-              setShowHowToUse(true);
-              setIsOpen(false);
-            }}
+            onClick={() =>setIsOpen(false)}
           >
             How to Use
-          </button>
+          </Link>
           <Link
             to="/feedback"
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"

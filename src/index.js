@@ -5,14 +5,16 @@ import './index.css';
 import App from './App';
 import Feedback from './Feedback'; 
 import reportWebVitals from './reportWebVitals';
+import HowToUse from './HowToUse.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter> {/* Wrap App with BrowserRouter */}
-      <Routes> {/* Use Routes to define individual routes */}
-        <Route path="/" element={<App />} /> {/* Main route */}
-        <Route path="/feedback" element={<Feedback/>} /> {/* Route for /feedback */}
+    <BrowserRouter> 
+      <Routes> 
+        <Route path="/" element={<App />} /> 
+        <Route path="/feedback" element={<Feedback/>} />
+        <Route path = "/how-to-use" element ={<HowToUse/>}  />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

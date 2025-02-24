@@ -69,7 +69,7 @@ function HowToUse() {
                         className="max-w-full md:max-w-[45%] h-auto rounded-md shadow-md"
                     />
                 </div>
-                <p className = "mt-3 mb-7">Please note that academic courses are 4.0s, and KAP/AP courses are 5.0s.</p>
+                <p className = "mt-3 mb-7">Please note that academic (ACA) courses are 4.0s, and KAP/AP courses are 5.0s.</p>
             </div>
         </div>
     );

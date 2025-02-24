@@ -7,9 +7,7 @@ function GradeAverageCalculator() {
   const [results, setResults] = useState(null);
 
   const calculateAverage = () => {
-    if (results) {
-      setResults(null);
-    } else {
+    {
     const calculateAverageForCategory = (gradesString) => {
       if (!gradesString) return 0; // Handle empty input
       const gradesList = gradesString.split(',').map(grade => parseFloat(grade.trim()));

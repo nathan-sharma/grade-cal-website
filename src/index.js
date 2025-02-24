@@ -1,6 +1,11 @@
+/* eslint-disable import/first */
+if (sessionStorage.redirected) {
+  sessionStorage.removeItem('redirected');
+  console.log("Redirected from 404, now handling route.");
+}
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import routing components
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import './index.css';
 import App from './App';
 import Feedback from './Feedback'; 

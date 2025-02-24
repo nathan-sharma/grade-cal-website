@@ -7,9 +7,7 @@ function SemesterCalculator() {
   const [results, setResults] = useState(null);
 
   const calculate = () => {
-    if (results) {
-      setResults(null);
-    } else {
+     
       const average = (parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3;
       const get_an_a = (20 / 3) * (89.5 - 0.85 * average);
       const get_a_b = (20 / 3) * (79.5 - 0.85 * average);
@@ -17,7 +15,7 @@ function SemesterCalculator() {
       const skibidi_toilet = 0.85 * average + 15;
 
       setResults({ get_an_a, get_a_b, to_pass, skibidi_toilet });
-    }
+    
   };
 
   return (

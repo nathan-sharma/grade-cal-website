@@ -38,10 +38,6 @@ function GPACalculator() {
   };
 
   const calculateGPA = () => {
-    if (weightedGpa !== null) {
-      setWeightedGpa(null);
-      return;
-    }
     const acaLetters = { A: 4, B: 3, C: 2, D: 1, F: 0 };
     const kapApLetters = { A: 5, B: 4, C: 3, D: 2, F: 0 };
 

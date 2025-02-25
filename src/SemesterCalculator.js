@@ -5,6 +5,9 @@ function SemesterCalculator() {
   const [sw2, setSw2] = useState('');
   const [sw3, setSw3] = useState('');
   const [results, setResults] = useState(null);
+  const clearResults = () => {
+    setResults(null);
+  };
 
   const calculate = () => {
      
@@ -47,10 +50,18 @@ function SemesterCalculator() {
         onClick={calculate}
       >
         Calculate
-      </button>
+        </button>
+        {results && (
+          <button
+            onClick={clearResults}
+            className="text-red-600 font-bold px-2 py-2 ml-2"
+          >
+            X
+          </button>
+        )}
 
       {results && (
-        <div className="mt-4">
+        <div className="mt-4 relative">
           <p className="my-1">
             Minimum needed on final to get an A:{" "}
             {results.get_an_a > 100

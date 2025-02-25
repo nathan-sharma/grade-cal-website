@@ -6,7 +6,6 @@ function GPACalculator() {
   const [weightedGpa, setWeightedGpa] = useState(null);
 
   const calculatePoints = (gradesString, letterValues) => {
-    
     let points = 0;
     let count = 0;
     let hasError = false;
@@ -57,6 +56,11 @@ function GPACalculator() {
     setWeightedGpa(calculatedWeightedGpa.toFixed(4));
   };
 
+  const clearResults = () => {
+    setWeightedGpa(null);
+
+  };
+
   return (
     <div className="p-8 bg-white">
       <h2 className="text-2xl font-bold mb-4">GPA</h2>
@@ -77,9 +81,17 @@ function GPACalculator() {
       <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
         Calculate
       </button>
+      {weightedGpa !== null && (
+          <button
+            onClick={clearResults}
+            className="text-red-600 font-bold px-2 py-2 ml-2" // Added ml-2 for spacing
+          >
+            X
+          </button>
+        )}
 
       {weightedGpa !== null && (
-        <div className="mt-4">
+        <div className="mt-4 relative">
           <p className="text-lg">Your weighted KISD GPA: {weightedGpa}</p>
           <p className="text-lg">Your 4.0 scaled GPA: {(weightedGpa * 0.8).toFixed(4)}</p>
         </div>

@@ -5,7 +5,7 @@ function HowToUse() {
     return (
         <div className="App flex flex-col min-h-screen justify-start bg-gray-200">
             <Navbar />
-            <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">How to use the calculators</h2>
+            <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">How to Use the Calculators</h2>
             <div className="px-8 md:px-10">
                 <h1 className="text-xl underline mt-5">Semester Exam Calculator</h1>
                 <p className="mt-4">

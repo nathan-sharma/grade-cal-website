@@ -16,7 +16,7 @@ function HowToUse() {
                     <img
                         src="/semesterexamexample.png"
                         alt="HAC view for semester exam average"
-                        className="max-w-full md:max-w-[45%] h-auto rounded-md shadow-md"
+                        className="max-w-full md:max-w-[60%] h-auto rounded-md shadow-md"
                     />
                     <img
                         src="/semesterexamexample2.png"

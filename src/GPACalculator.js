@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline'; // Import the reset icon
 
 function GPACalculator() {
   const [academicGrades, setAcademicGrades] = useState('');
@@ -58,7 +59,6 @@ function GPACalculator() {
 
   const clearResults = () => {
     setWeightedGpa(null);
-
   };
 
   return (
@@ -78,17 +78,19 @@ function GPACalculator() {
         onChange={e => setKapApGrades(e.target.value)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
-      <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
-        Calculate
-      </button>
-      {weightedGpa !== null && (
+      <div className="flex items-center mb-4"> {/* Added flex items-center */}
+        <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
+          Calculate
+        </button>
+        {weightedGpa !== null && (
           <button
             onClick={clearResults}
-            className="text-red-600 font-bold px-2 py-2 ml-2" // Added ml-2 for spacing
+            className="text-gray-600 px-2 py-2 ml-2 hover:text-gray-900" 
           >
-            X
+            <ArrowUturnLeftIcon className="h-5 w-5" />
           </button>
         )}
+      </div>
 
       {weightedGpa !== null && (
         <div className="mt-4 relative">

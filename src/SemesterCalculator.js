@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
+import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline'; // Import the reset icon
 
 function SemesterCalculator() {
   const [sw1, setSw1] = useState('');
   const [sw2, setSw2] = useState('');
   const [sw3, setSw3] = useState('');
   const [results, setResults] = useState(null);
+
   const clearResults = () => {
     setResults(null);
   };
 
   const calculate = () => {
-     
-      const average = (parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3;
-      const get_an_a = (20 / 3) * (89.5 - 0.85 * average);
-      const get_a_b = (20 / 3) * (79.5 - 0.85 * average);
-      const to_pass = (20 / 3) * (70 - 0.85 * average);
-      const skibidi_toilet = 0.85 * average + 15;
+    const average = (parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3;
+    const get_an_a = (20 / 3) * (89.5 - 0.85 * average);
+    const get_a_b = (20 / 3) * (79.5 - 0.85 * average);
+    const to_pass = (20 / 3) * (70 - 0.85 * average);
+    const skibidi_toilet = 0.85 * average + 15;
 
-      setResults({ get_an_a, get_a_b, to_pass, skibidi_toilet });
-    
+    setResults({ get_an_a, get_a_b, to_pass, skibidi_toilet });
   };
 
   return (
@@ -45,20 +45,22 @@ function SemesterCalculator() {
         onChange={(e) => setSw3(e.target.value)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
-      <button
-        className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
-        onClick={calculate}
-      >
-        Calculate
+      <div className="flex items-center mb-4"> {/* Added flex items-center */}
+        <button
+          className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
+          onClick={calculate}
+        >
+          Calculate
         </button>
         {results && (
           <button
             onClick={clearResults}
-            className="text-red-600 font-bold px-2 py-2 ml-2"
+            className="text-gray-600 px-2 py-2 ml-2 hover:text-gray-900" 
           >
-            X
+            <ArrowUturnLeftIcon className="h-5 w-5" />
           </button>
         )}
+      </div>
 
       {results && (
         <div className="mt-4 relative">

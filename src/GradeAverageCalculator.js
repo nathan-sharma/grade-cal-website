@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 
 function GradeAverageCalculator() {
   const [majors, setMajors] = useState('');
@@ -65,9 +64,9 @@ function GradeAverageCalculator() {
         {results && (
           <button
             onClick={clearResults}
-            className="text-gray-600 px-2 py-2 ml-2 hover:text-gray-900"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-2"
           >
-            <ArrowUturnLeftIcon className="h-5 w-5" />
+          Clear
           </button>
         )}
       </div>

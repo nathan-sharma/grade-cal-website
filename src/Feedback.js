@@ -6,9 +6,11 @@ function Feedback() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [showHowToUse, setShowHowToUse] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
         try {
             const response = await fetch('https://gradecalwebsite.onrender.com/api/feedback', {
                 method: 'POST',
@@ -30,6 +32,8 @@ function Feedback() {
         } catch (error) {
             console.error('Fetch error:', error);
             alert('An unexpected error occurred.');
+        } finally {
+            setIsLoading(false); // Stop loading
         }
     };
 
@@ -87,10 +91,16 @@ function Feedback() {
                         <button
                             type="submit"
                             className="mb-10 bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-                        >
+                            disabled={isLoading}
+                       >
                             Submit Feedback
                         </button>
                     </form>
+                    {isLoading && (
+                        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
+                            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+                        </div>
+                    )}
 
                     {showHowToUse && (
                         <div

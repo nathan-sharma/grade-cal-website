@@ -7,27 +7,6 @@ function HowToUse() {
             <Navbar />
             <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">How to Use the Calculators</h2>
             <div className="px-8 md:px-10">
-                <h1 className="text-xl underline mt-5">Semester Exam Calculator</h1>
-                <p className="mt-4">
-                Input your six-week averages for any class into the SW fields. The calculator will return the minimum exam scores you need for your average to be an A or higher, B or higher, and C or higher, as well as your average if you exempted the final and your best-case scenario average.✅ Guaranteed means you will get that letter grade or higher for your average. ❌Impossible means that even with a 100 on the final exam, it would not be possible for you to receive that letter grade or higher.
-                </p>
-
-                <div className="flex flex-col md:flex-row items-center justify-center mt-4 gap-4">
-                    <img
-                        src="/semesterexamexample.png"
-                        alt="HAC view for semester exam average"
-                        className="max-w-full md:max-w-[60%] h-auto rounded-md shadow-md"
-                    />
-                    <img
-                        src="/semesterexamexample2.png"
-                        alt="Example of semester exam input"
-                        className="max-w-full md:max-w-[45%] h-auto rounded-md shadow-md"
-                    />
-                </div>
-
-                <p className="mt-3">
-                In the example above, the student needs a 41.33 or higher on the exam to get an A in Algebra 2 for the semester. Their average is guaranteed to be B (or possibly higher). If the student is exempt from the semester exam, their average would be 98.00. If the student took the semester exam and got a 100 (best-case scenario), their average would be 98.30.
-                </p>
                 <h1 className="text-xl underline mt-8">Class Average Calculator</h1>
                 <p className="mt-3">
                 Input your grades separated by commas into each category. You can also use this as a what-if calculator to see what you need to get your desired grade or how a mock grade could impact your average. If you have a single number repeating for a category (example: 100, 100, 100, 100), just input one number.
@@ -69,8 +48,30 @@ function HowToUse() {
                         className="max-w-full md:max-w-[45%] h-auto rounded-md shadow-md"
                     />
                 </div>
-                <p className = "mt-3 mb-7">Please note that this calculator does not yet support dual credit (4.5) courses.</p>
+                <p className = "mt-3 mb-3">Please note that this calculator does not yet support dual credit (4.5) courses.</p>
+                <h1 className="text-xl underline mt-5">Semester Exam Calculator</h1>
+                <p className="mt-4">
+                Input your six-week averages for any class into the SW fields. The calculator will return the minimum exam scores you need for your average to be an A or higher, B or higher, and C or higher, as well as your average if you exempted the final and your best-case scenario average.✅ Guaranteed means you will get that letter grade or higher for your average. ❌Impossible means that even with a 100 on the final exam, it would not be possible for you to receive that letter grade or higher.
+                </p>
+
+                <div className="flex flex-col md:flex-row items-center justify-center mt-4 gap-4">
+                    <img
+                        src="/semesterexamexample.png"
+                        alt="HAC view for semester exam average"
+                        className="max-w-full md:max-w-[60%] h-auto rounded-md shadow-md"
+                    />
+                    <img
+                        src="/semesterexamexample2.png"
+                        alt="Example of semester exam input"
+                        className="max-w-full md:max-w-[45%] h-auto rounded-md shadow-md"
+                    />
+                </div>
+
+                <p className="mt-3 mb-7">
+                In the example above, the student needs a 41.33 or higher on the exam to get an A in Algebra 2 for the semester. Their average is guaranteed to be B (or possibly higher). If the student is exempt from the semester exam, their average would be 98.00. If the student took the semester exam and got a 100 (best-case scenario), their average would be 98.30.
+                </p>
             </div>
+            
         </div>
     );
 }

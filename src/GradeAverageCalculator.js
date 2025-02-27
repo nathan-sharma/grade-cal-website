@@ -23,9 +23,41 @@ function GradeAverageCalculator() {
     const avgMinors = calculateAverageForCategory(minors);
     const avgOthers = calculateAverageForCategory(others);
 
-    const finalAvgKap = 0.6 * avgMajors + 0.3 * avgMinors + 0.1 * avgOthers;
-    const finalAvgAca = 0.5 * avgMajors + 0.35 * avgMinors + 0.15 * avgOthers;
-    const finalAvgAp = 0.7 * avgMajors + 0.2 * avgMinors + 0.1 * avgOthers;
+    let finalAvgKap, finalAvgAca, finalAvgAp;
+
+    const majorsCount = majors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
+    const minorsCount = minors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
+    const othersCount = others.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
+
+    if (majorsCount === 1 && minorsCount === 0 && othersCount === 0) {
+      finalAvgKap = avgMajors;
+      finalAvgAca = avgMajors;
+      finalAvgAp = avgMajors;
+    } else if (majorsCount === 0 && minorsCount === 1 && othersCount === 0) {
+      finalAvgKap = avgMinors;
+      finalAvgAca = avgMinors;
+      finalAvgAp = avgMinors;
+    } else if (majorsCount === 0 && minorsCount === 0 && othersCount === 1) {
+      finalAvgKap = avgOthers;
+      finalAvgAca = avgOthers;
+      finalAvgAp = avgOthers;
+    } else if (!majors) {
+      finalAvgKap = 0.75 * avgMinors + 0.25 * avgOthers;
+      finalAvgAca = 0.7 * avgMinors + 0.3 * avgOthers;
+      finalAvgAp = (2 / 3) * avgMinors + (1 / 3) * avgOthers;
+    } else if (!minors) {
+      finalAvgKap = (6 / 7) * avgMajors + (1 / 7) * avgOthers;
+      finalAvgAca = (10 / 13) * avgMajors + (3 / 13) * avgOthers;
+      finalAvgAp = (7 / 8) * avgMajors + (1 / 8) * avgOthers;
+    } else if (!others) {
+      finalAvgKap = (2 / 3) * avgMajors + (1 / 3) * avgMinors;
+      finalAvgAca = (10 / 17) * avgMajors + (7 / 17) * avgMinors;
+      finalAvgAp = (7 / 9) * avgMajors + (2 / 9) * avgMinors;
+    } else {
+      finalAvgKap = 0.6 * avgMajors + 0.3 * avgMinors + 0.1 * avgOthers;
+      finalAvgAca = 0.5 * avgMajors + 0.35 * avgMinors + 0.15 * avgOthers;
+      finalAvgAp = 0.7 * avgMajors + 0.2 * avgMinors + 0.1 * avgOthers;
+    }
 
     setResults({ kap: finalAvgKap, aca: finalAvgAca, ap: finalAvgAp });
   };
@@ -54,7 +86,7 @@ function GradeAverageCalculator() {
         onChange={(e) => setOthers(e.target.value)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
-      <div className="flex items-center mb-4"> {/* Added items-center */}
+      <div className="flex items-center mb-4">
         <button
           className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
           onClick={calculateAverage}
@@ -66,7 +98,7 @@ function GradeAverageCalculator() {
             onClick={clearResults}
             className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-2"
           >
-          Clear
+            Clear
           </button>
         )}
       </div>

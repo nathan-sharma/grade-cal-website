@@ -12,13 +12,13 @@ function App() {
       <div className="mt-6 p-8 w-30 h-full"> 
         <div className="flex flex-col space-y-8">
           <div>
-            <SemesterCalculator />
-          </div>
-          <div>
           <GradeAverageCalculator />
           </div>
           <div>
           <GPACalculator />
+          </div>
+          <div>
+          <SemesterCalculator />
           </div>
         </div>
       </div>

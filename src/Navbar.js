@@ -5,7 +5,7 @@ function Navbar({ setShowHowToUse }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-900 p-4 w-full">
+    <nav className="bg-blue-900 p-4 w-full sticky top-0 ">
       <div className=" flex justify-between items-center">
       <div className={`flex items-center ${isOpen ? 'hidden' : 'flex'}`}>
           <Link to="/">

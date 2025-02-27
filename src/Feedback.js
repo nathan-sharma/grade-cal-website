@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 
 function Feedback() {
@@ -7,6 +7,17 @@ function Feedback() {
     const [message, setMessage] = useState('');
     const [showHowToUse, setShowHowToUse] = useState(false);
     const [isLoading, setIsLoading] = useState(false); 
+    const [notificationMessage, setNotificationMessage] = useState('');
+    const [isErrorNotification, setIsErrorNotification] = useState(false);
+    useEffect(() => {
+        if (notificationMessage) {
+            const timer = setTimeout(() => {
+                setNotificationMessage(''); 
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [notificationMessage]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,17 +32,20 @@ function Feedback() {
             });
 
             if (response.ok) {
-                alert('Feedback sent successfully!');
+                setNotificationMessage('Feedback sent successfully!');
+                setIsErrorNotification(false);
                 setName('');
                 setEmail('');
                 setMessage('');
             } else {
                 const errorData = await response.json();
-                alert(`Error: ${errorData.error || 'Failed to send feedback.'}`);
+                setNotificationMessage(errorData.error || 'Failed to send feedback.');
+                setIsErrorNotification(true);
             }
         } catch (error) {
             console.error('Fetch error:', error);
-            alert('An unexpected error occurred.');
+            setNotificationMessage('An unexpected error occurred.');
+            setIsErrorNotification(true);
         } finally {
             setIsLoading(false); // Stop loading
         }
@@ -99,6 +113,15 @@ function Feedback() {
                     {isLoading && (
                         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
                             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+                        </div>
+                    )}
+                    {notificationMessage && (
+                        <div
+                            className={`p-4 mt-4 rounded-md ${
+                                isErrorNotification ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'
+                            }`}
+                        >
+                            {notificationMessage}
                         </div>
                     )}
 

@@ -29,15 +29,15 @@ function GradeAverageCalculator() {
     const minorsCount = minors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
     const othersCount = others.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
 
-    if (majorsCount === 1 && minorsCount === 0 && othersCount === 0) {
+    if (majorsCount >= 1 && minorsCount === 0 && othersCount === 0) {
       finalAvgKap = avgMajors;
       finalAvgAca = avgMajors;
       finalAvgAp = avgMajors;
-    } else if (majorsCount === 0 && minorsCount === 1 && othersCount === 0) {
+    } else if (majorsCount === 0 && minorsCount >= 1 && othersCount === 0) {
       finalAvgKap = avgMinors;
       finalAvgAca = avgMinors;
       finalAvgAp = avgMinors;
-    } else if (majorsCount === 0 && minorsCount === 0 && othersCount === 1) {
+    } else if (majorsCount === 0 && minorsCount === 0 && othersCount >= 1) {
       finalAvgKap = avgOthers;
       finalAvgAca = avgOthers;
       finalAvgAp = avgOthers;

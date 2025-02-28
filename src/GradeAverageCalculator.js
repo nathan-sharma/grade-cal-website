@@ -8,6 +8,9 @@ function GradeAverageCalculator() {
 
   const clearResults = () => {
     setResults(null);
+    setMajors('');
+    setMinors('');
+    setOthers('');
   };
 
   const calculateAverage = () => {

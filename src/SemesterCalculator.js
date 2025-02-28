@@ -8,6 +8,9 @@ function SemesterCalculator() {
 
   const clearResults = () => {
     setResults(null);
+    setSw1('');
+    setSw2('');
+    setSw3('');
   };
 
   const calculate = () => {

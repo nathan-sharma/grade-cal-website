@@ -5,7 +5,16 @@ function SemesterCalculator() {
   const [sw2, setSw2] = useState('');
   const [sw3, setSw3] = useState('');
   const [results, setResults] = useState(null);
+  const handleInputChange = (e, setter) => {
+    const inputValue = e.target.value;
+    const sanitizedValue = inputValue.replace(/[^0-9]/g, ''); 
 
+    const numbers = sanitizedValue.split(',').map(num => parseInt(num.trim(), 10)).filter(num => !isNaN(num));
+
+    const validNumbers = numbers.filter(num => num >= 0 && num <= 100);
+
+    setter(validNumbers.join(','));
+  };
   const clearResults = () => {
     setResults(null);
     setSw1('');
@@ -30,21 +39,21 @@ function SemesterCalculator() {
         type="number"
         placeholder="1st SW"
         value={sw1}
-        onChange={(e) => setSw1(e.target.value)}
+        onChange={(e) => handleInputChange(e, setSw1)}
         className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
         type="number"
         placeholder="2nd SW"
         value={sw2}
-        onChange={(e) => setSw2(e.target.value)}
+        onChange={(e) => handleInputChange(e, setSw2)}
         className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
         type="number"
         placeholder="3rd SW"
         value={sw3}
-        onChange={(e) => setSw3(e.target.value)}
+        onChange={(e) => handleInputChange(e, setSw3)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
       <div className="flex items-center mb-4"> {/* Added flex items-center */}

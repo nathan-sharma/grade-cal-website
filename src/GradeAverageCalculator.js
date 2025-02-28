@@ -5,6 +5,10 @@ function GradeAverageCalculator() {
   const [minors, setMinors] = useState('');
   const [others, setOthers] = useState('');
   const [results, setResults] = useState(null);
+  const handleInputChange = (e, setter) => {
+    const sanitizedValue = e.target.value.replace(/[^0-9,\s]/g, '');
+    setter(sanitizedValue);
+  };
 
   const clearResults = () => {
     setResults(null);
@@ -72,21 +76,21 @@ function GradeAverageCalculator() {
         type="text"
         placeholder="Major Grades"
         value={majors}
-        onChange={(e) => setMajors(e.target.value)}
+        onChange={(e) => handleInputChange(e, setMajors)}
         className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
         type="text"
         placeholder="Minor Grades"
         value={minors}
-        onChange={(e) => setMinors(e.target.value)}
+        onChange={(e) => handleInputChange(e, setMinors)}
         className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
         type="text"
         placeholder="Other Grades"
         value={others}
-        onChange={(e) => setOthers(e.target.value)}
+        onChange={(e) => handleInputChange(e, setOthers)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
       <div className="flex items-center mb-4">

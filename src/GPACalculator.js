@@ -4,6 +4,10 @@ function GPACalculator() {
   const [academicGrades, setAcademicGrades] = useState('');
   const [kapApGrades, setKapApGrades] = useState('');
   const [weightedGpa, setWeightedGpa] = useState(null);
+  const handleInputChange = (e, setter) => {
+    const sanitizedValue = e.target.value.replace(/[^a-df0-9(),\s]/gi, '');
+    setter(sanitizedValue);
+  };
 
   const calculatePoints = (gradesString, letterValues) => {
     let points = 0;
@@ -19,7 +23,7 @@ function GPACalculator() {
           const num = parseInt(parts[1].replace(')', ''));
 
           if (isNaN(num)) {
-            alert(`Invalid input: ${entry}. See how to use (in the navbar) for more info.`);
+            alert(`Invalid input: ${entry}. See how to use in the navbar for more info.`);
             hasError = true;
             break;
           } else {
@@ -27,7 +31,7 @@ function GPACalculator() {
             count += num;
           }
         } else {
-          alert(`Invalid format: ${entry}. See how to use (in the navbar) for more info.`);
+          alert(`Invalid format: ${entry}. See how to use in the navbar for more info.`);
           hasError = true;
           break;
         }
@@ -69,14 +73,14 @@ function GPACalculator() {
         type="text"
         placeholder="ACA (4.0) courses"
         value={academicGrades}
-        onChange={e => setAcademicGrades(e.target.value)}
+        onChange={(e) => handleInputChange(e, setAcademicGrades)}
         className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
         type="text"
         placeholder="KAP & AP (5.0) courses"
         value={kapApGrades}
-        onChange={e => setKapApGrades(e.target.value)}
+        onChange={(e) => handleInputChange(e, setKapApGrades)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
       <div className="flex items-center mb-4">

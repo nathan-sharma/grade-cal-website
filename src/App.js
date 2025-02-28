@@ -2,6 +2,7 @@ import SemesterCalculator from './SemesterCalculator';
 import GradeAverageCalculator from './GradeAverageCalculator';
 import GPACalculator from './GPACalculator';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer'
 
 function Feedback() {
     const [name, setName] = useState('');
@@ -146,9 +147,11 @@ function Feedback() {
                                 </button>
                             </div>
                         </div>
+                        
                     )}
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

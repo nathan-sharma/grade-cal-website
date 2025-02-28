@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar'; 
+import Footer from './Footer';
 
 function HowToUse() {
     return (
@@ -71,7 +72,7 @@ function HowToUse() {
                 In the example above, the student needs a 41.33 or higher on the exam to get an A in Algebra 2 for the semester. Their average is guaranteed to be B (or possibly higher). If the student is exempt from the semester exam, their average would be 98.00. If the student took the semester exam and got a 100 (best-case scenario), their average would be 98.30.
                 </p>
             </div>
-            
+            <Footer />
         </div>
     );
 }

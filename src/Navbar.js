@@ -114,13 +114,13 @@ function Navbar({ setShowHowToUse }) {
 
       {isShareOpen && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50">
-          <p className="mb-4 font-bold text-xl">Share Katy Grade Calc</p>
-          <div className="flex items-center">
+          <p className="mb-4 font-bold text-xl">Share:</p>
+          <div className="flex items-center flex-wrap">
             <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com">
               <img
                 src="/imessage.png"
                 alt="Imessage logo"
-                className="h-10 mr-3"
+                className="h-8 md:h-10 mr-3 mb-2"
                 style={{ marginBottom: '-2px' }}
               />
             </a>

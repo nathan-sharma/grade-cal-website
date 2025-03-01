@@ -1,13 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { MdEmail, MdLink } from 'react-icons/md';
 
 function Navbar({ setShowHowToUse }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
+
+  const handleShareClick = () => {
+    setIsShareOpen(!isShareOpen);
+    setIsOpen(false);
+  };
+
+  const closeSharePopup = () => {
+    setIsShareOpen(false);
+  };
+
+  const handleCopyClick = (event) => {
+    event.preventDefault();
+    const linkToCopy = 'https://katygradecalc.com';
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(linkToCopy)
+        .then(() => alert('Link copied to clipboard!'))
+        .catch((err) => console.error('Could not copy text: ', err));
+    } else {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = linkToCopy;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      alert('Link copied to clipboard!');
+    }
+  };
 
   return (
-    <nav className="bg-blue-900 p-4 w-full sticky top-0 ">
-      <div className=" flex justify-between items-center">
-      <div className={`flex items-center ${isOpen ? 'hidden' : 'flex'}`}>
+    <nav className="bg-blue-900 p-4 w-full sticky top-0">
+      <div className="flex justify-between items-center">
+        <div className={`flex items-center ${isOpen ? 'hidden' : 'flex'}`}>
           <Link to="/">
             <img
               src="/A-192x192.png"
@@ -20,7 +52,6 @@ function Navbar({ setShowHowToUse }) {
             Katy Grade Calc
           </Link>
         </div>
-        {/* Hamburger Button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -46,7 +77,6 @@ function Navbar({ setShowHowToUse }) {
             </svg>
           </button>
         </div>
-        {/* Navigation Links */}
         <div
           className={`${
             isOpen ? 'block' : 'hidden'
@@ -60,9 +90,9 @@ function Navbar({ setShowHowToUse }) {
             Home
           </Link>
           <Link
-          to="/how-to-use"
+            to="/how-to-use"
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
-            onClick={() =>setIsOpen(false)}
+            onClick={() => setIsOpen(false)}
           >
             How to Use
           </Link>
@@ -73,8 +103,60 @@ function Navbar({ setShowHowToUse }) {
           >
             Feedback
           </Link>
+          <button
+            className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
+            onClick={handleShareClick}
+          >
+            Share
+          </button>
         </div>
       </div>
+
+      {isShareOpen && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50">
+          <p className="mb-4 font-bold text-xl">Share Katy Grade Calc</p>
+          <div className="flex items-center">
+            <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com">
+              <img
+                src="/imessage.png"
+                alt="Imessage logo"
+                className="h-10 mr-3"
+                style={{ marginBottom: '-2px' }}
+              />
+            </a>
+            <a
+              href="mailto:info@katygradecalc.com?subject=Sharing%20Katy%20Grade%20Calc&body=Check%20out%20this%20useful%20website:%20https://katygradecalc.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MdEmail className="text-3xl text-gray-600 mr-3" />
+            </a>
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u=https://www.katygradecalc.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faFacebook} className="text-3xl text-blue-600 mr-3" />
+            </a>
+            <button onClick={handleCopyClick} style={{ display: 'flex', alignItems: 'center', background:'none', border:'none', padding:0, cursor:'pointer' }}>
+              <MdLink className = "text-3xl text-green-500 mr-3" />
+            </button>
+          </div>
+          <button
+            className="mt-4 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded"
+            onClick={closeSharePopup}
+          >
+            Close
+          </button>
+        </div>
+      )}
+
+      {isShareOpen && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40"
+          onClick={closeSharePopup}
+        ></div>
+      )}
     </nav>
   );
 }

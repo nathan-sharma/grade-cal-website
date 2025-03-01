@@ -113,7 +113,7 @@ function Navbar({ setShowHowToUse }) {
       </div>
 
       {isShareOpen && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50 w-2/3 sm:w-auto">
           <p className="mb-4 font-bold text-xl">Share:</p>
           <div className="flex items-center flex-wrap">
             <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com">
@@ -125,7 +125,7 @@ function Navbar({ setShowHowToUse }) {
               />
             </a>
             <a
-              href="mailto:info@katygradecalc.com?subject=Sharing%20Katy%20Grade%20Calc&body=Check%20out%20this%20useful%20website:%20https://katygradecalc.com"
+              href="mailto:?subject=Sharing%20Katy%20Grade%20Calc&body=Check%20out%20this%20useful%20website:%20https://katygradecalc.com"
               target="_blank"
               rel="noopener noreferrer"
             >

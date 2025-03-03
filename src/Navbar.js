@@ -113,14 +113,14 @@ function Navbar({ setShowHowToUse }) {
       </div>
 
       {isShareOpen && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50 w-2/3 sm:w-auto">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50 w-1/2 sm:w-auto">
           <p className="mb-4 font-bold text-xl">Share:</p>
           <div className="flex items-center flex-wrap">
             <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com">
               <img
                 src="/imessage.png"
                 alt="Imessage logo"
-                className="h-8 md:h-10 mr-3 mb-2 mt-2"
+                className="h-8 md:h-10 mr-3 mb-2 mt-3"
                 style={{ marginBottom: '-2px' }}
               />
             </a>
@@ -129,11 +129,11 @@ function Navbar({ setShowHowToUse }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MdEmail className="text-3xl text-gray-400 mr-3 mt-2" />
+              <MdEmail className="text-3xl text-gray-400 mr-3 mt-3" />
             </a>
             <a
               href="https://www.facebook.com/sharer/sharer.php?u=https://www.katygradecalc.com"
-              className = "mt-2"
+              className = "mt-3"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -143,7 +143,7 @@ function Navbar({ setShowHowToUse }) {
             <img
               src="/reddit-logo.png"
               alt="Reddit Logo"
-              className="h-8 mr-3 mt-2"
+              className="h-8 mr-3 mt-3"
               style={{ marginBottom: '-2px' }}
             />
           </Link>
@@ -151,17 +151,17 @@ function Navbar({ setShowHowToUse }) {
             <img
               src="/whatsapp-logo.png"
               alt="Whatsapp Logo"
-              className="h-8 mr-3 mt-2"
+              className="h-8 mr-3 mt-3"
               style={{ marginBottom: '-2px' }}
             />
           </Link>
           <button onClick={handleCopyClick} style={{ display: 'flex', alignItems: 'center', background:'none', border:'none', padding:0, cursor:'pointer' }}>
-              <MdLink className = "text-3xl mr-3 mt-2" />
+              <MdLink className = "text-3xl mr-3 mt-3" />
             </button>
           </div>
           
           <button
-            className="font-bold mt-4 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded"
+            className="font-bold mt-5 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded"
             onClick={closeSharePopup}
           >
             Close

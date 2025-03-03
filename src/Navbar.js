@@ -115,8 +115,12 @@ function Navbar({ setShowHowToUse }) {
       {isShareOpen && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50 w-1/2 sm:w-auto">
           <p className="mb-4 font-bold text-xl">Share:</p>
-          <div className="flex items-center flex-wrap">
-            <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com">
+          <div className="flex items-center flex-wrap justify-center">
+            <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com"
+             style={{ transition: 'transform 0.3s ease-in-out' }}
+             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+            >
               <img
                 src="/imessage.png"
                 alt="Imessage logo"
@@ -128,6 +132,9 @@ function Navbar({ setShowHowToUse }) {
               href="mailto:?subject=Sharing%20Katy%20Grade%20Calc&body=Check%20out%20this%20useful%20grade%20calculator:%20https://katygradecalc.com"
               target="_blank"
               rel="noopener noreferrer"
+              style={{ transition: 'transform 0.3s ease-in-out' }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
             >
               <MdEmail className="text-3xl text-gray-400 mr-3 mt-3" />
             </a>
@@ -136,10 +143,16 @@ function Navbar({ setShowHowToUse }) {
               className = "mt-3"
               target="_blank"
               rel="noopener noreferrer"
+              style={{ transition: 'transform 0.3s ease-in-out' }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
             >
               <FontAwesomeIcon icon={faFacebook} className="text-3xl text-blue-600 mr-3" />
             </a>
-            <Link to="https://www.reddit.com/submit?url=https://katygradecalc.com&title=Check%20out%20this%20useful%20grade%20calculator!">
+            <Link to="https://www.reddit.com/submit?url=https://katygradecalc.com&title=Check%20out%20this%20useful%20grade%20calculator!"
+             style={{ transition: 'transform 0.3s ease-in-out' }}
+             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}>
             <img
               src="/reddit-logo.png"
               alt="Reddit Logo"
@@ -147,7 +160,10 @@ function Navbar({ setShowHowToUse }) {
               style={{ marginBottom: '-2px' }}
             />
           </Link>
-            <Link to="https://wa.me/?text=Check%20out%20this%20useful%20grade%20calculator!%20https://katygradecalc.com">
+            <Link to="https://wa.me/?text=Check%20out%20this%20useful%20grade%20calculator!%20https://katygradecalc.com"
+             style={{ transition: 'transform 0.3s ease-in-out' }}
+             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}>
             <img
               src="/whatsapp-logo.png"
               alt="Whatsapp Logo"
@@ -155,17 +171,33 @@ function Navbar({ setShowHowToUse }) {
               style={{ marginBottom: '-2px' }}
             />
           </Link>
-          <button onClick={handleCopyClick} style={{ display: 'flex', alignItems: 'center', background:'none', border:'none', padding:0, cursor:'pointer' }}>
-              <MdLink className = "text-3xl mr-3 mt-3" />
-            </button>
+         <button
+  onClick={handleCopyClick}
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease-in-out', // Added transition here
+  }}
+  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+>
+  <MdLink className="text-3xl mr-3 mt-3" />
+</button>
+
           </div>
-          
+
+          <div className = ""></div>
           <button
             className="font-bold mt-5 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded"
             onClick={closeSharePopup}
           >
-            Close
+            Done
           </button>
+          
         </div>
       )}
 

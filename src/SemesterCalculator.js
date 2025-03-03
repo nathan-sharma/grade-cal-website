@@ -7,9 +7,9 @@ function SemesterCalculator() {
   const [results, setResults] = useState(null);
   const handleInputChange = (e, setter) => {
     const inputValue = e.target.value;
-    const sanitizedValue = inputValue.replace(/[^0-9.]/g, '');
+    const sanitizedValue = inputValue.replace(/[^0-9]/g, '');
   
-    const numbers = sanitizedValue.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+    const numbers = sanitizedValue.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
   
     const validNumbers = numbers.filter(num => num >= 0 && num <= 105);
   
@@ -23,7 +23,7 @@ function SemesterCalculator() {
   };
 
   const calculate = () => {
-    const average = (parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3;
+    const average = (parseInt(sw1) + parseInt(sw2) + parseInt(sw3)) / 3;
     const get_an_a = (20 / 3) * (89.5 - 0.85 * average);
     const get_a_b = (20 / 3) * (79.5 - 0.85 * average);
     const to_pass = (20 / 3) * (70 - 0.85 * average);
@@ -102,7 +102,7 @@ function SemesterCalculator() {
           <p className="my-1">
             Best case scenario: your average is a(n) {results.skibidi_toilet.toFixed(2)}
           </p>
-          <p className>Average if exempted: {((parseFloat(sw1) + parseFloat(sw2) + parseFloat(sw3)) / 3).toFixed(2)} </p>
+          <p className>Average if exempted: {((parseInt(sw1) + parseInt(sw2) + parseInt(sw3)) / 3).toFixed(2)} </p>
         </div>
       )}
     </div>

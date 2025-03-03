@@ -6,7 +6,7 @@ function GradeAverageCalculator() {
   const [others, setOthers] = useState('');
   const [results, setResults] = useState(null);
   const handleInputChange = (e, setter) => {
-    const sanitizedValue = e.target.value.replace(/[^0-9,\s]/g, '');
+    const sanitizedValue = e.target.value.replace(/[^0-9.,\s]/g, '');
     setter(sanitizedValue);
   };
 

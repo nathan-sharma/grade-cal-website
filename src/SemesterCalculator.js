@@ -7,12 +7,12 @@ function SemesterCalculator() {
   const [results, setResults] = useState(null);
   const handleInputChange = (e, setter) => {
     const inputValue = e.target.value;
-    const sanitizedValue = inputValue.replace(/[^0-9]/g, ''); 
-
-    const numbers = sanitizedValue.split(',').map(num => parseInt(num.trim(), 10)).filter(num => !isNaN(num));
-
-    const validNumbers = numbers.filter(num => num >= 0 && num <= 100);
-
+    const sanitizedValue = inputValue.replace(/[^0-9.]/g, '');
+  
+    const numbers = sanitizedValue.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+  
+    const validNumbers = numbers.filter(num => num >= 0 && num <= 105);
+  
     setter(validNumbers.join(','));
   };
   const clearResults = () => {

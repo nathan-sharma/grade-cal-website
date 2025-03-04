@@ -76,7 +76,7 @@ function Feedback() {
                     <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">Feedback</h2>
 
                     <form onSubmit={handleSubmit} className="px-4 md:px-8 max-w-md mx-auto w-full">
-                        <div className="mb-4">
+                        <div className="mb-5">
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                                 Name
                             </label>
@@ -90,27 +90,35 @@ function Feedback() {
                             />
                         </div>
 
-                        <div className="mb-4">
-                            <label htmlFor="q1Answer" className="block text-sm font-medium text-gray-700">
-                                How easy was it to use the calculators?<span className="text-red-500"> *</span> 
-                            </label>
-                            <select
-                                id="q1Answer"
-                                value={q1Answer}
-                                onChange={handleQ1Change} // Use the modified handler
-                                className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
-                                required
-                            >
-                                <option value="">Select an option</option>
-                                {q1Options.map((option) => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <div className="mb-5">
+    <label htmlFor="q1Answer" className="block text-sm font-medium text-gray-700">
+        How easy was it to use the calculators?<span className="text-red-500"> *</span>
+    </label>
+    <div className="mt-2 space-y-2"> {/* Container for radio buttons */}
+        {q1Options.map((option) => (
+            <div key={option.value} className="flex items-center">
+                <input
+                    type="radio"
+                    id={`q1Answer-${option.value}`} // Unique ID for each radio button
+                    name="q1Answer" // All radio buttons in the group must have the same name
+                    value={option.value}
+                    checked={q1Answer === option.value}
+                    onChange={handleQ1Change}
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+                    required
+                />
+                <label
+                    htmlFor={`q1Answer-${option.value}`}
+                    className="ml-3 block text-sm font-medium text-gray-700"
+                >
+                    {option.label}
+                </label>
+            </div>
+        ))}
+    </div>
+    </div>
 
-                        {showImproveInput && ( <div className="mb-4">
+                        {showImproveInput && ( <div className="mb-5">
                             <label htmlFor="q2Answer" className="block text-sm font-medium text-gray-700">
                             What can we do to improve?<span className="text-red-500"> *</span> 
                             </label>
@@ -118,7 +126,7 @@ function Feedback() {
                                 id="q2Answer"
                                 value={q2Answer}
                                 onChange={(e) => setQ2Answer(e.target.value)}
-                                rows="3"
+                                rows="2"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
                                 placeholder="Your answer"
                                 required 
@@ -127,7 +135,7 @@ function Feedback() {
 
                         <div className="mb-5">
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                            General Feedback<span className="text-red-500"> *</span> 
+                            General feedback<span className="text-red-500"> *</span> 
                             </label>
                             <textarea
                                 id="message"
@@ -136,7 +144,7 @@ function Feedback() {
                                 rows="4"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
                                 placeholder="Your answer"
-                                required
+                                required 
                             ></textarea>
                         </div>
 

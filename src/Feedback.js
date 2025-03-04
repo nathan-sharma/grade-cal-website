@@ -120,7 +120,7 @@ function Feedback() {
 
                         {showImproveInput && ( <div className="mb-5">
                             <label htmlFor="q2Answer" className="block text-sm font-medium text-gray-700">
-                            What can we do to improve?<span className="text-red-500"> *</span> 
+                            What can we do to improve?
                             </label>
                             <textarea
                                 id="q2Answer"
@@ -129,7 +129,6 @@ function Feedback() {
                                 rows="2"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
                                 placeholder="Your answer"
-                                required 
                             ></textarea>
                         </div> ) }
 

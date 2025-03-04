@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function GPACalculator() {
   const [academicGrades, setAcademicGrades] = useState('');
   const [kapApGrades, setKapApGrades] = useState('');
   const [weightedGpa, setWeightedGpa] = useState(null);
+  const [calculationMade, setCalculationMade] = useState(false);
+
+  useEffect(() => {
+    const savedAcademic = localStorage.getItem('academicGrades');
+    const savedKapAp = localStorage.getItem('kapApGrades');
+
+    if (savedAcademic) setAcademicGrades(savedAcademic);
+    if (savedKapAp) setKapApGrades(savedKapAp);
+  }, []);
+
   const handleInputChange = (e, setter) => {
     const sanitizedValue = e.target.value.replace(/[^a-df0-9(),\s]/gi, '');
     setter(sanitizedValue);
@@ -14,7 +24,7 @@ function GPACalculator() {
     let count = 0;
     let hasError = false;
 
-    if (gradesString.toLowerCase() !== 'none' && gradesString.trim() !== "") {
+    if (gradesString.toLowerCase() !== 'none' && gradesString.trim() !== '') {
       const entries = gradesString.split(',');
       for (const entry of entries) {
         const parts = entry.trim().split('(');
@@ -45,7 +55,7 @@ function GPACalculator() {
     const kapApLetters = { A: 5, B: 4, C: 3, D: 2, F: 0 };
 
     const acaPointsCount = calculatePoints(academicGrades, acaLetters);
-    const kapPointsCount = calculatePoints(kapApGrades === 'none' ? "" : kapApGrades, kapApLetters);
+    const kapPointsCount = calculatePoints(kapApGrades === 'none' ? '' : kapApGrades, kapApLetters);
 
     if (acaPointsCount.hasError || kapPointsCount.hasError) {
       setWeightedGpa(null);
@@ -58,15 +68,26 @@ function GPACalculator() {
     const calculatedWeightedGpa = totalCourses > 0 ? totalPoints / totalCourses : 0;
 
     setWeightedGpa(calculatedWeightedGpa.toFixed(4));
+    setCalculationMade(true);
   };
 
   const clearResults = () => {
     setWeightedGpa(null);
-    setAcademicGrades(''); // Clear input fields
+    setAcademicGrades('');
     setKapApGrades('');
+    setCalculationMade(false);
   };
 
+  const handleSave = () => {
+    localStorage.setItem('academicGrades', academicGrades);
+    localStorage.setItem('kapApGrades', kapApGrades);
+    alert('Grades saved to this browser!');
+  };
+
+  const saveButtonColor = calculationMade ? 'bg-blue-600 hover:bg-blue-900' : 'bg-blue-200';
+
   return (
+    
     <div className="p-8 bg-white">
       <h2 className="text-2xl font-bold mb-4">GPA</h2>
       <input
@@ -87,12 +108,19 @@ function GPACalculator() {
         <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
           Calculate
         </button>
+        <button
+          className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
+          onClick={handleSave}
+          disabled={!calculationMade}
+        >
+          Save
+        </button>
         {weightedGpa !== null && (
           <button
             onClick={clearResults}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-2" // Changed to button styling
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3"
           >
-            Clear
+            Done
           </button>
         )}
       </div>

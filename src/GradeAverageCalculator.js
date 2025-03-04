@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function GradeAverageCalculator() {
   const [majors, setMajors] = useState('');
   const [minors, setMinors] = useState('');
   const [others, setOthers] = useState('');
   const [results, setResults] = useState(null);
+  const [calculationMade, setCalculationMade] = useState(false);
+
+  useEffect(() => {
+    const savedMajors = localStorage.getItem('majors');
+    const savedMinors = localStorage.getItem('minors');
+    const savedOthers = localStorage.getItem('others');
+
+    if (savedMajors) setMajors(savedMajors);
+    if (savedMinors) setMinors(savedMinors);
+    if (savedOthers) setOthers(savedOthers);
+  }, []);
+
   const handleInputChange = (e, setter) => {
     const sanitizedValue = e.target.value.replace(/[^0-9.,\s]/g, '');
     setter(sanitizedValue);
@@ -15,6 +27,7 @@ function GradeAverageCalculator() {
     setMajors('');
     setMinors('');
     setOthers('');
+    setCalculationMade(false);
   };
 
   const calculateAverage = () => {
@@ -67,8 +80,16 @@ function GradeAverageCalculator() {
     }
 
     setResults({ kap: finalAvgKap, aca: finalAvgAca, ap: finalAvgAp });
-  };
+    setCalculationMade(true);
+  }
 
+  const handleSave = () => {
+    localStorage.setItem('majors', majors);
+    localStorage.setItem('minors', minors);
+    localStorage.setItem('others', others);
+    alert("Grades saved to this browser!");
+  };
+  const saveButtonColor = calculationMade ? 'bg-blue-600 hover:bg-blue-900' : 'bg-blue-200';
   return (
     <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Class Average</h2>
@@ -100,12 +121,19 @@ function GradeAverageCalculator() {
         >
           Calculate
         </button>
+        <button
+          className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
+          onClick={handleSave}
+          disabled={!calculationMade}
+        >
+          Save
+        </button>
         {results && (
           <button
             onClick={clearResults}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-2"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3"
           >
-            Clear
+            Done
           </button>
         )}
       </div>

@@ -34,7 +34,6 @@ app.post('/api/feedback', async (req, res) => {
         Name: ${name || 'Anonymous'}
         General feedback: ${message}
         Difficulty to use: ${q1Answer || 'Not provided'}
-        How to improve: ${q2Answer || 'Not provided'}
         Timestamp: ${new Date().toISOString()}
       `,
     };

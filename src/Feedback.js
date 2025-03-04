@@ -11,13 +11,11 @@ function Feedback() {
     const q1Options = [
         { value: 'very_easy', label: 'Very Easy' },
         { value: 'easy', label: 'Easy' },
-        { value: 'neutral', label: 'Neutral' },
+        { value: 'okay', label: 'Okay' },
         { value: 'difficult', label: 'Difficult' },
         { value: 'very_difficult', label: 'Very Difficult' },
     ];
-    const [q2Answer, setQ2Answer] = useState('');
     const [q1Answer, setQ1Answer] = useState('');
-    const [showImproveInput, setShowImproveInput] = useState(false);
 
     useEffect(() => {
         if (notificationMessage) {
@@ -30,9 +28,7 @@ function Feedback() {
     }, [notificationMessage]);
 
     const handleQ1Change = (e) => {
-        const selectedValue = e.target.value;
-        setQ1Answer(selectedValue);
-        setShowImproveInput(['neutral', 'difficult', 'very_difficult'].includes(selectedValue));
+        setQ1Answer(e.target.value);
     };
 
     const handleSubmit = async (event) => {
@@ -44,7 +40,7 @@ function Feedback() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, message, q1Answer, q2Answer }), // Include answers
+                body: JSON.stringify({ name, message, q1Answer }), // Include answers
             });
 
             if (response.ok) {
@@ -53,7 +49,6 @@ function Feedback() {
                 setName('');
                 setMessage('');
                 setQ1Answer('');
-                setQ2Answer('');
             } else {
                 const errorData = await response.json();
                 setNotificationMessage(errorData.error || 'Failed to send feedback.');
@@ -91,50 +86,36 @@ function Feedback() {
                         </div>
 
                         <div className="mb-5">
-    <label htmlFor="q1Answer" className="block text-sm font-medium text-gray-700">
-        How easy was it to use the calculators?<span className="text-red-500"> *</span>
-    </label>
-    <div className="mt-2 space-y-2"> {/* Container for radio buttons */}
-        {q1Options.map((option) => (
-            <div key={option.value} className="flex items-center">
-                <input
-                    type="radio"
-                    id={`q1Answer-${option.value}`} // Unique ID for each radio button
-                    name="q1Answer" // All radio buttons in the group must have the same name
-                    value={option.value}
-                    checked={q1Answer === option.value}
-                    onChange={handleQ1Change}
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
-                    required
-                />
-                <label
-                    htmlFor={`q1Answer-${option.value}`}
-                    className="ml-3 block text-sm font-medium text-gray-700"
-                >
-                    {option.label}
-                </label>
-            </div>
-        ))}
-    </div>
-    </div>
-
-                        {showImproveInput && ( <div className="mb-5">
-                            <label htmlFor="q2Answer" className="block text-sm font-medium text-gray-700">
-                            What can we do to improve?
+                            <label htmlFor="q1Answer" className="block text-sm font-medium text-gray-700">
+                                How easy was it to use the calculators?<span className="text-red-500"> *</span>
                             </label>
-                            <textarea
-                                id="q2Answer"
-                                value={q2Answer}
-                                onChange={(e) => setQ2Answer(e.target.value)}
-                                rows="2"
-                                className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
-                                placeholder="Your Answer"
-                            ></textarea>
-                        </div> ) }
+                            <div className="mt-2 space-y-2">
+                                {q1Options.map((option) => (
+                                    <div key={option.value} className="flex items-center">
+                                        <input
+                                            type="radio"
+                                            id={`q1Answer-${option.value}`}
+                                            name="q1Answer"
+                                            value={option.value}
+                                            checked={q1Answer === option.value}
+                                            onChange={handleQ1Change}
+                                            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+                                            required
+                                        />
+                                        <label
+                                            htmlFor={`q1Answer-${option.value}`}
+                                            className="ml-3 block text-sm font-medium text-gray-700"
+                                        >
+                                            {option.label}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
                         <div className="mb-5">
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                            General Feedback<span className="text-red-500"> *</span> 
+                                Feedback<span className="text-red-500"> *</span>
                             </label>
                             <textarea
                                 id="message"
@@ -143,7 +124,7 @@ function Feedback() {
                                 rows="4"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
                                 placeholder="Your Answer"
-                                required 
+                                required
                             ></textarea>
                         </div>
 

@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/api/feedback', async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, q1Answer, q2Answer } = req.body; // Extract q1Answer and q2Answer
 
   if (!message) {
     return res.status(400).json({ error: 'Feedback message is required.' });
@@ -34,6 +34,8 @@ app.post('/api/feedback', async (req, res) => {
         Name: ${name || 'Anonymous'}
         Email: ${email || 'No Email'}
         Message: ${message}
+        Question 1 Answer: ${q1Answer || 'Not provided'}
+        Question 2 Answer: ${q2Answer || 'Not provided'}
         Timestamp: ${new Date().toISOString()}
       `,
     };

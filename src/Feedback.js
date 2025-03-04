@@ -8,12 +8,14 @@ function Feedback() {
     const [isLoading, setIsLoading] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
     const [isErrorNotification, setIsErrorNotification] = useState(false);
+    const [q1Answer, setQ1Answer] = useState(''); // Answer for question 1
+    const [q2Answer, setQ2Answer] = useState(''); // Answer for question 2
 
     useEffect(() => {
         if (notificationMessage) {
             const timer = setTimeout(() => {
                 setNotificationMessage('');
-            }, 2000);
+            }, 2500);
 
             return () => clearTimeout(timer);
         }
@@ -28,15 +30,16 @@ function Feedback() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, message }), // Removed email
+                body: JSON.stringify({ name, message, q1Answer, q2Answer }), // Include answers
             });
 
             if (response.ok) {
-                setNotificationMessage('Feedback sent successfully!');
+                setNotificationMessage('Feedback sent successfully! Thanks!');
                 setIsErrorNotification(false);
                 setName('');
                 setMessage('');
-                //removed setEmail('')
+                setQ1Answer('');
+                setQ2Answer('');
             } else {
                 const errorData = await response.json();
                 setNotificationMessage(errorData.error || 'Failed to send feedback.');
@@ -53,7 +56,7 @@ function Feedback() {
 
     return (
         <div className="App flex flex-col min-h-screen justify-start">
-            <Navbar/>
+            <Navbar />
             <div className="bg-gray-200 flex-grow">
                 <div className="flex flex-col items-center justify-start">
                     <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">Feedback</h2>
@@ -61,7 +64,7 @@ function Feedback() {
                     <form onSubmit={handleSubmit} className="px-4 md:px-8 max-w-md mx-auto w-full">
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                Name (Optional)
+                                Name
                             </label>
                             <input
                                 type="text"
@@ -73,11 +76,39 @@ function Feedback() {
                             />
                         </div>
 
-                        {/* Removed email input */}
+                        <div className="mb-4">
+                            <label htmlFor="q1Answer" className="block text-sm font-medium text-gray-700">
+                            <span className="text-red-500">* </span>How easy was it to use the calculators?
+                            </label>
+                            <textarea
+                                id="q1Answer"
+                                value={q1Answer}
+                                onChange={(e) => setQ1Answer(e.target.value)}
+                                rows="3"
+                                className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
+                                placeholder="Your answer"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div className="mb-4">
+                            <label htmlFor="q2Answer" className="block text-sm font-medium text-gray-700">
+                            <span className="text-red-500">* </span>Any features you would like to see added? 
+                            </label>
+                            <textarea
+                                id="q2Answer"
+                                value={q2Answer}
+                                onChange={(e) => setQ2Answer(e.target.value)}
+                                rows="3"
+                                className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
+                                placeholder="Your answer"
+                                required 
+                            ></textarea>
+                        </div>
 
                         <div className="mb-5">
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                                Feedback
+                            <span className="text-red-500">* </span>General Feedback
                             </label>
                             <textarea
                                 id="message"
@@ -85,7 +116,7 @@ function Feedback() {
                                 onChange={(e) => setMessage(e.target.value)}
                                 rows="4"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
-                                placeholder="Your Feedback"
+                                placeholder="Your answer"
                                 required
                             ></textarea>
                         </div>

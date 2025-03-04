@@ -141,13 +141,17 @@ function Feedback() {
                             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
                         </div>
                     )}
-                    {notificationMessage && (
+                {notificationMessage && (
                         <div
-                            className={`p-4 mt-4 rounded-md ${
-                                isErrorNotification ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'
-                            }`}
+                            className="fixed top-15 left-1/2 transform -translate-x-1/2 z-50" 
                         >
-                            {notificationMessage}
+                            <div
+                                className={`p-4 rounded-md text-center ${
+                                    isErrorNotification ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'
+                                }`}
+                            >
+                                {notificationMessage}
+                            </div>
                         </div>
                     )}
                 </div>

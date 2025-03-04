@@ -114,7 +114,6 @@ function Navbar({ setShowHowToUse }) {
 
       {isShareOpen && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border rounded shadow-md z-50 w-1/2 sm:w-auto">
-          <p className="mb-4 font-bold text-xl">Share:</p>
           <div className="flex items-center flex-wrap justify-center">
             <a href="sms:&body=Check%20out%20Katy%20Grade%20Calc:%20https://katygradecalc.com"
              style={{ transition: 'transform 0.3s ease-in-out' }}
@@ -190,14 +189,14 @@ function Navbar({ setShowHowToUse }) {
 
           </div>
 
-          <div className = ""></div>
+          <div className = "flex justify-center">
           <button
-            className="font-bold mt-5 bg-gray-300 hover:bg-gray-400 py-2 px-4 rounded"
+            className="font-bold mt-5 bg-gray-300 hover:bg-gray-400 w-full py-1 rounded"
             onClick={closeSharePopup}
           >
             Done
           </button>
-          
+          </div>
         </div>
       )}
 

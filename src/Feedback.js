@@ -128,13 +128,13 @@ function Feedback() {
                                 onChange={(e) => setQ2Answer(e.target.value)}
                                 rows="2"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
-                                placeholder="Your answer"
+                                placeholder="Your Answer"
                             ></textarea>
                         </div> ) }
 
                         <div className="mb-5">
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                            General feedback<span className="text-red-500"> *</span> 
+                            General Feedback<span className="text-red-500"> *</span> 
                             </label>
                             <textarea
                                 id="message"
@@ -142,7 +142,7 @@ function Feedback() {
                                 onChange={(e) => setMessage(e.target.value)}
                                 rows="4"
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
-                                placeholder="Your answer"
+                                placeholder="Your Answer"
                                 required 
                             ></textarea>
                         </div>

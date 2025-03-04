@@ -8,8 +8,16 @@ function Feedback() {
     const [isLoading, setIsLoading] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
     const [isErrorNotification, setIsErrorNotification] = useState(false);
-    const [q1Answer, setQ1Answer] = useState(''); // Answer for question 1
-    const [q2Answer, setQ2Answer] = useState(''); // Answer for question 2
+    const q1Options = [
+        { value: 'very_easy', label: 'Very Easy' },
+        { value: 'easy', label: 'Easy' },
+        { value: 'neutral', label: 'Neutral' },
+        { value: 'difficult', label: 'Difficult' },
+        { value: 'very_difficult', label: 'Very Difficult' },
+    ];
+    const [q2Answer, setQ2Answer] = useState('');
+    const [q1Answer, setQ1Answer] = useState('');
+    const [showImproveInput, setShowImproveInput] = useState(false);
 
     useEffect(() => {
         if (notificationMessage) {
@@ -20,6 +28,12 @@ function Feedback() {
             return () => clearTimeout(timer);
         }
     }, [notificationMessage]);
+
+    const handleQ1Change = (e) => {
+        const selectedValue = e.target.value;
+        setQ1Answer(selectedValue);
+        setShowImproveInput(['neutral', 'difficult', 'very_difficult'].includes(selectedValue));
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -78,22 +92,27 @@ function Feedback() {
 
                         <div className="mb-4">
                             <label htmlFor="q1Answer" className="block text-sm font-medium text-gray-700">
-                            <span className="text-red-500">* </span>How easy was it to use the calculators?
+                                How easy was it to use the calculators?<span className="text-red-500"> *</span> 
                             </label>
-                            <textarea
+                            <select
                                 id="q1Answer"
                                 value={q1Answer}
-                                onChange={(e) => setQ1Answer(e.target.value)}
-                                rows="3"
+                                onChange={handleQ1Change} // Use the modified handler
                                 className="mt-1 p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
-                                placeholder="Your answer"
                                 required
-                            ></textarea>
+                            >
+                                <option value="">Select an option</option>
+                                {q1Options.map((option) => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.label}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
 
-                        <div className="mb-4">
+                        {showImproveInput && ( <div className="mb-4">
                             <label htmlFor="q2Answer" className="block text-sm font-medium text-gray-700">
-                            <span className="text-red-500">* </span>Any features you would like to see added? 
+                            What can we do to improve?<span className="text-red-500"> *</span> 
                             </label>
                             <textarea
                                 id="q2Answer"
@@ -104,11 +123,11 @@ function Feedback() {
                                 placeholder="Your answer"
                                 required 
                             ></textarea>
-                        </div>
+                        </div> ) }
 
                         <div className="mb-5">
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                            <span className="text-red-500">* </span>General Feedback
+                            General Feedback<span className="text-red-500"> *</span> 
                             </label>
                             <textarea
                                 id="message"

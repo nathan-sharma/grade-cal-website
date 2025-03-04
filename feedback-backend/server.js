@@ -32,10 +32,9 @@ app.post('/api/feedback', async (req, res) => {
       subject: 'New Feedback Received',
       text: `
         Name: ${name || 'Anonymous'}
-        Email: ${email || 'No Email'}
-        Message: ${message}
-        Question 1 Answer: ${q1Answer || 'Not provided'}
-        Question 2 Answer: ${q2Answer || 'Not provided'}
+        General feedback: ${message}
+        Difficulty to use: ${q1Answer || 'Not provided'}
+        How to improve: ${q2Answer || 'Not provided'}
         Timestamp: ${new Date().toISOString()}
       `,
     };

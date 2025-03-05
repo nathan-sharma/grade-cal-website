@@ -21,15 +21,31 @@ function GradeAverageCalculator() {
     const sanitizedValue = e.target.value.replace(/[^0-9.,\s]/g, '');
     setter(sanitizedValue);
   };
-
+  const isDataSaved =
+  localStorage.getItem('majors') ||
+  localStorage.getItem('minors') ||
+  localStorage.getItem('others');
   const clearResults = () => {
+    if (!localStorage.getItem('majors') && !localStorage.getItem('minors') && !localStorage.getItem('others')) {
+      setMajors('');
+      setMinors('');
+      setOthers('');
+    }
     setResults(null);
+    setCalculationMade(false);
+  };
+  const handleReset = () => {
+    localStorage.removeItem('majors');
+    localStorage.removeItem('minors');
+    localStorage.removeItem('others');
+    localStorage.removeItem('results'); 
     setMajors('');
     setMinors('');
     setOthers('');
-    setCalculationMade(false);
+    setResults(null); 
+    setCalculationMade(false); 
+    alert("Saved data cleared.");
   };
-
   const calculateAverage = () => {
     const calculateAverageForCategory = (gradesString) => {
       if (!gradesString) return 0;
@@ -48,6 +64,7 @@ function GradeAverageCalculator() {
     const majorsCount = majors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
     const minorsCount = minors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
     const othersCount = others.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
+
 
     if (majorsCount >= 1 && minorsCount === 0 && othersCount === 0) {
       finalAvgKap = avgMajors;
@@ -121,13 +138,21 @@ function GradeAverageCalculator() {
         >
           Calculate
         </button>
-        <button
-          className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
-          onClick={handleSave}
-          disabled={!calculationMade}
-        >
-          Save
-        </button>
+        {isDataSaved ? (
+          <button
+            className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3"
+            onClick={handleReset}
+          >
+            Unsave
+          </button>
+        ) : (
+          <button
+            className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
+            onClick={handleSave}
+            disabled={!calculationMade}
+          >
+            Save
+          </button> ) }
         {results && (
           <button
             onClick={clearResults}

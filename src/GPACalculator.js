@@ -19,6 +19,18 @@ function GPACalculator() {
     setter(sanitizedValue);
   };
 
+  const isDataSaved =
+  localStorage.getItem('academicGrades') ||
+  localStorage.getItem('kapApGrades');
+
+  const handleReset = () => {
+    localStorage.removeItem('academicGrades');
+    localStorage.removeItem('kapApGrades');
+    setAcademicGrades('');
+    setKapApGrades('');
+    setCalculationMade(false); 
+    alert("Saved data cleared.");
+  };
   const calculatePoints = (gradesString, letterValues) => {
     let points = 0;
     let count = 0;
@@ -72,9 +84,11 @@ function GPACalculator() {
   };
 
   const clearResults = () => {
+    if (!localStorage.getItem('academicGrades') && !localStorage.getItem('kapApGrades') ) {
+      setAcademicGrades('');
+      setKapApGrades('');
+    }
     setWeightedGpa(null);
-    setAcademicGrades('');
-    setKapApGrades('');
     setCalculationMade(false);
   };
 
@@ -108,13 +122,21 @@ function GPACalculator() {
         <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
           Calculate
         </button>
-        <button
-          className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
-          onClick={handleSave}
-          disabled={!calculationMade}
-        >
-          Save
-        </button>
+        {isDataSaved ? (
+          <button
+            className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3"
+            onClick={handleReset}
+          >
+            Unsave
+          </button>
+        ) : (
+          <button
+            className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
+            onClick={handleSave}
+            disabled={!calculationMade}
+          >
+            Save
+          </button> ) }
         {weightedGpa !== null && (
           <button
             onClick={clearResults}

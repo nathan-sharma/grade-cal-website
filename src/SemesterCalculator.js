@@ -25,26 +25,27 @@ function SemesterCalculator() {
 
     if (!isNaN(number) && number >= 0 && number <= 105) {
       setter(sanitizedValue);
-    } else if (sanitizedValue === ""){
-        setter(sanitizedValue);
+    } else if (sanitizedValue === "") {
+      setter(sanitizedValue);
     }
   };
 
   const clearResults = () => {
+    if (!localStorage.getItem('sw1') && !localStorage.getItem('sw2') && !localStorage.getItem('sw3')) {
+      setSw1('');
+      setSw2('');
+      setSw3('');
+    }
     setResults(null);
-    setSw1('');
-    setSw2('');
-    setSw3('');
     setCalculationMade(false);
   };
-
   const calculate = () => {
     const average = ((parseInt(sw1) || 0) + (parseInt(sw2) || 0) + (parseInt(sw3) || 0)) / 3;
     const get_an_a = (20 / 3) * (89.5 - 0.85 * average);
     const get_a_b = (20 / 3) * (79.5 - 0.85 * average);
     const to_pass = (20 / 3) * (70 - 0.85 * average);
     const skibidi_toilet = 0.85 * average + 15;
-  
+
     setResults({ get_an_a, get_a_b, to_pass, skibidi_toilet });
     setCalculationMade(true);
   };
@@ -55,6 +56,22 @@ function SemesterCalculator() {
     localStorage.setItem('sw3', sw3);
     alert('Grades saved to this browser!');
   };
+
+  const handleReset = () => {
+    localStorage.removeItem('sw1');
+    localStorage.removeItem('sw2');
+    localStorage.removeItem('sw3');
+    setSw1('');
+    setSw2('');
+    setSw3('');
+    setCalculationMade(false);
+    alert("Saved data cleared.");
+  };
+
+  const isDataSaved =
+    localStorage.getItem('sw1') ||
+    localStorage.getItem('sw2') ||
+    localStorage.getItem('sw3');
 
   const saveButtonColor = calculationMade ? 'bg-blue-600 hover:bg-blue-900' : 'bg-blue-200';
 
@@ -89,13 +106,22 @@ function SemesterCalculator() {
         >
           Calculate
         </button>
-        <button
-          className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
-          onClick={handleSave}
-          disabled={!calculationMade}
-        >
-          Save
-        </button>
+        {isDataSaved ? (
+          <button
+            className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3"
+            onClick={handleReset}
+          >
+            Unsave
+          </button>
+        ) : (
+          <button
+            className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
+            onClick={handleSave}
+            disabled={!calculationMade}
+          >
+            Save
+          </button>
+        )}
         {results && (
           <button
             onClick={clearResults}
@@ -120,7 +146,7 @@ function SemesterCalculator() {
           <p className="my-1">
             Best case scenario: your average is a(n) {results.skibidi_toilet.toFixed(2)}
           </p>
-          <p className>Average if exempted: {((parseInt(sw1) || 0)/3 + (parseInt(sw2) || 0)/3 + (parseInt(sw3) || 0)/3 ).toFixed(2)} </p>
+          <p className>Average if exempted: {((parseInt(sw1) || 0) / 3 + (parseInt(sw2) || 0) / 3 + (parseInt(sw3) || 0) / 3).toFixed(2)} </p>
         </div>
       )}
     </div>

@@ -68,7 +68,7 @@ function Feedback() {
             <Navbar />
             <div className="bg-gray-200 flex-grow">
                 <div className="flex flex-col items-center justify-start">
-                    <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">Feedback</h2>
+                    <h2 className="text-2xl font-semibold mb-4 mt-[100px] text-center">Feedback</h2>
 
                     <form onSubmit={handleSubmit} className="px-4 md:px-8 max-w-md mx-auto w-full">
                         <div className="mb-5">
@@ -143,7 +143,7 @@ function Feedback() {
                     )}
                 {notificationMessage && (
                         <div
-                            className="fixed top-22 left-1/2 transform -translate-x-1/2 z-50" 
+                            className="fixed md:top-[96px] top-[75px] left-1/2 transform -translate-x-1/2 z-50" 
                         >
                             <div
                                 className={`p-4 rounded-md text-center ${

@@ -40,7 +40,7 @@ function Feedback() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, message, q1Answer }), // Include answers
+                body: JSON.stringify({ name, message, q1Answer }),
             });
 
             if (response.ok) {
@@ -66,11 +66,11 @@ function Feedback() {
     return (
         <div className="App flex flex-col min-h-screen justify-start">
             <Navbar />
-            <div className="bg-gray-200 flex-grow">
-                <div className="flex flex-col items-center justify-start">
+            <div className="bg-gray-200 flex-grow flex justify-center">
+                <div className="flex flex-col items-center justify-start w-full max-w-md">
                     <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">Feedback</h2>
 
-                    <form onSubmit={handleSubmit} className="px-4 md:px-8 max-w-md mx-auto w-full">
+                    <form onSubmit={handleSubmit} className="px-4 md:px-8 w-full">
                         <div className="mb-5">
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                                 Name
@@ -141,10 +141,8 @@ function Feedback() {
                             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
                         </div>
                     )}
-                {notificationMessage && (
-                        <div
-                            className="fixed top-15 left-1/2 transform -translate-x-1/2 z-50" 
-                        >
+                    {notificationMessage && (
+                        <div className="fixed md:top-[96px] top-[75px] left-1/2 transform -translate-x-1/2 z-50">
                             <div
                                 className={`p-4 rounded-md text-center ${
                                     isErrorNotification ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'

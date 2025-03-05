@@ -143,7 +143,7 @@ function Feedback() {
                     )}
                 {notificationMessage && (
                         <div
-                            className="fixed top-15 left-1/2 transform -translate-x-1/2 z-50" 
+                            className="fixed top-22 left-1/2 transform -translate-x-1/2 z-50" 
                         >
                             <div
                                 className={`p-4 rounded-md text-center ${

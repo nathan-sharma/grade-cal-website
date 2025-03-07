@@ -4,6 +4,7 @@ function GPACalculator() {
   const [academicGrades, setAcademicGrades] = useState('');
   const [kapApGrades, setKapApGrades] = useState('');
   const [weightedGpa, setWeightedGpa] = useState(null);
+  const [UnweightedGpa, setUnweightedGpa] = useState(null);
   const [calculationMade, setCalculationMade] = useState(false);
 
   useEffect(() => {
@@ -67,19 +68,24 @@ function GPACalculator() {
     const kapApLetters = { A: 5, B: 4, C: 3, D: 2, F: 0 };
 
     const acaPointsCount = calculatePoints(academicGrades, acaLetters);
+    const unweightedKapApPointsCount = calculatePoints(kapApGrades, acaLetters)
     const kapPointsCount = calculatePoints(kapApGrades === 'none' ? '' : kapApGrades, kapApLetters);
 
     if (acaPointsCount.hasError || kapPointsCount.hasError) {
       setWeightedGpa(null);
+      setUnweightedGpa(null); 
       return;
     }
 
     const totalPoints = acaPointsCount.points + kapPointsCount.points;
     const totalCourses = acaPointsCount.count + kapPointsCount.count;
+    const unweightedPoints = unweightedKapApPointsCount.points + acaPointsCount.points;
 
     const calculatedWeightedGpa = totalCourses > 0 ? totalPoints / totalCourses : 0;
+    const calculatedUnweightedGpa = totalCourses > 0 ? unweightedPoints / totalCourses : 0
 
     setWeightedGpa(calculatedWeightedGpa.toFixed(4));
+    setUnweightedGpa(calculatedUnweightedGpa.toFixed(4));
     setCalculationMade(true);
   };
 
@@ -150,7 +156,7 @@ function GPACalculator() {
       {weightedGpa !== null && (
         <div className="mt-4 relative">
           <p className="text-lg">Your weighted KISD GPA: {weightedGpa}</p>
-          <p className="text-lg">Your 4.0 scaled GPA: {(weightedGpa * 0.8).toFixed(4)}</p>
+          <p className="text-lg">Your unweighted GPA: {UnweightedGpa}</p>
         </div>
       )}
     </div>

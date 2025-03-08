@@ -166,7 +166,7 @@ function GPACalculator() {
           </button>
         ) }
         <button
-          className="bg-green-600 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-3"
+          className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded ml-3"
           onClick={handleViewSaved}
         >
           View
@@ -227,13 +227,13 @@ function GPACalculator() {
             )}
             <div className = "flex items-center justify-center">
             <button
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mt-3"
+              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mt-4"
               onClick={handleCloseSaved}
             >
               Close
             </button>
             <button
-              className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3 h-auto mt-3"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3 h-auto mt-4"
               onClick={handleUnsaveAll}
             >
               Clear

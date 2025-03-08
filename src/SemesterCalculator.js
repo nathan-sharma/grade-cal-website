@@ -102,7 +102,11 @@ function SemesterCalculator() {
       localStorage.removeItem('savedSemesters');
     };
 
-
+    const handleRemoveSemesters = (indexToRemove) => {
+      const updatedSavedSemesters = savedSemesters.filter((_, index) => index !== indexToRemove);
+      setSavedSemesters(updatedSavedSemesters);
+      localStorage.setItem('savedSemesters', JSON.stringify(updatedSavedSemesters));
+    };
   return (
     <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Semester Exam</h2>
@@ -233,6 +237,12 @@ function SemesterCalculator() {
                   </p>
                 </div>
               )}
+              <button
+      onClick={() => handleRemoveSemesters(index)}
+      className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin
+    >
+      Remove
+    </button>
             </li>
           ))}
         </ul>

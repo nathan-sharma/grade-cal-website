@@ -119,7 +119,11 @@ function GradeAverageCalculator() {
     setSavedGrades([]);
     localStorage.removeItem('savedGrades');
   };
-
+  const handleRemoveClass = (indexToRemove) => {
+    const updatedSavedGrades = savedGrades.filter((_, index) => index !== indexToRemove);
+    setSavedGrades(updatedSavedGrades);
+    localStorage.setItem('savedGrades', JSON.stringify(updatedSavedGrades));
+  };
   return (
     <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Class Average</h2>
@@ -206,6 +210,7 @@ function GradeAverageCalculator() {
               <ul>
                 {savedGrades.map((grade, index) => (
                   <li key={index} className="mb-4 border-b pb-2">
+                    <div className = "flex items-center justify-between"></div>
                     <p><strong>Name:</strong> {grade.name}</p>
                     <p><strong>Majors:</strong> {grade.majors || 'N/A'}</p>
                     <p><strong>Minors:</strong> {grade.minors || 'N/A'}</p>
@@ -217,6 +222,12 @@ function GradeAverageCalculator() {
                         <p><strong>AP Average:</strong> {grade.results.ap.toFixed(2)}</p>
                       </div>
                     )}
+                    <button
+      onClick={() => handleRemoveClass(index)}
+      className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin
+    >
+      Remove
+    </button>
                   </li>
                 ))}
               </ul>

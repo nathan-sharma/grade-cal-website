@@ -133,7 +133,11 @@ function GPACalculator() {
     setSavedGpas([]);
     localStorage.removeItem('savedGpas');
   };
-
+  const handleRemoveGpa = (indexToRemove) => {
+    const updatedSavedGpas = savedGpas.filter((_, index) => index !== indexToRemove);
+    setSavedGpas(updatedSavedGpas);
+    localStorage.setItem('savedGpas', JSON.stringify(updatedSavedGpas));
+  };
   return (
     
     <div className="p-8 bg-white">
@@ -217,9 +221,9 @@ function GPACalculator() {
               <ul>
                 {savedGpas.map((gpa, index) => (
                   <li key={index} className="mb-4 border-b pb-2">
-                    <p>
-                      <strong>Name:</strong> {gpa.name}
-                    </p>
+              <p>
+        <strong>Name:</strong> {gpa.name}
+      </p>
                     <p>
                       <strong>ACA Courses:</strong> {gpa.academicGrades || 'N/A'}
                     </p>
@@ -232,6 +236,12 @@ function GPACalculator() {
                     <p>
                       <strong>Unweighted GPA:</strong> {gpa.unweightedGpa}
                     </p>
+                    <button
+      onClick={() => handleRemoveGpa(index)}
+      className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin
+    >
+      Remove
+    </button>
                   </li>
                 ))}
               </ul>

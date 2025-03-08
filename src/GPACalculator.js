@@ -5,14 +5,18 @@ function GPACalculator() {
   const [kapApGrades, setKapApGrades] = useState('');
   const [weightedGpa, setWeightedGpa] = useState(null);
   const [UnweightedGpa, setUnweightedGpa] = useState(null);
+  const [savedGpas, setSavedGpas] = useState([]);
   const [calculationMade, setCalculationMade] = useState(false);
+  const [showSavedGpas, setShowSavedGpas] = useState(false);
 
   useEffect(() => {
     const savedAcademic = localStorage.getItem('academicGrades');
     const savedKapAp = localStorage.getItem('kapApGrades');
+    const savedGpasData = localStorage.getItem('savedGpas');
 
     if (savedAcademic) setAcademicGrades(savedAcademic);
     if (savedKapAp) setKapApGrades(savedKapAp);
+    if (savedGpasData) setSavedGpas(JSON.parse(savedGpasData) || []);
   }, []);
 
   const handleInputChange = (e, setter) => {
@@ -97,14 +101,39 @@ function GPACalculator() {
     setWeightedGpa(null);
     setCalculationMade(false);
   };
-
   const handleSave = () => {
-    localStorage.setItem('academicGrades', academicGrades);
-    localStorage.setItem('kapApGrades', kapApGrades);
-    alert('Grades saved to this browser!');
+    const name = prompt('Enter a name for this GPA calculation:');
+    if (name) {
+      const newSavedGpa = {
+        name: name,
+        academicGrades: academicGrades,
+        kapApGrades: kapApGrades,
+        weightedGpa: weightedGpa,
+        unweightedGpa: UnweightedGpa,
+      };
+      const updatedSavedGpas = [...savedGpas, newSavedGpa];
+      setSavedGpas(updatedSavedGpas);
+      // Save the updated GPAs to localStorage
+      localStorage.setItem('savedGpas', JSON.stringify(updatedSavedGpas));
+      alert('GPA calculation saved!');
+      setAcademicGrades('');
+      setKapApGrades('');
+      setWeightedGpa(null);
+      setUnweightedGpa(null);
+      setCalculationMade(false);
+    }
   };
-
-  const saveButtonColor = calculationMade ? 'bg-blue-600 hover:bg-blue-900' : 'bg-blue-200';
+  
+  const handleViewSaved = () => {
+    setShowSavedGpas(true);
+  };
+  const handleCloseSaved = () => {
+    setShowSavedGpas(false);
+  };
+  const handleUnsaveAll = () => {
+    setSavedGpas([]);
+    localStorage.removeItem('savedGpas');
+  };
 
   return (
     
@@ -128,28 +157,35 @@ function GPACalculator() {
         <button onClick={calculateGPA} className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
           Calculate
         </button>
-        {isDataSaved ? (
+        {isDataSaved && (
           <button
             className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3"
             onClick={handleReset}
           >
             Unsave
           </button>
-        ) : (
-          <button
-            className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
-            onClick={handleSave}
-            disabled={!calculationMade}
-          >
-            Save
-          </button> ) }
+        ) }
+        <button
+          className="bg-green-600 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-3"
+          onClick={handleViewSaved}
+        >
+          View
+        </button>
         {weightedGpa !== null && (
+          <>
+             <button
+             className= " bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded ml-3"
+             onClick={handleSave}
+           >
+             Save
+           </button>
           <button
             onClick={clearResults}
             className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3"
           >
             Done
           </button>
+          </>
         )}
       </div>
 
@@ -157,6 +193,53 @@ function GPACalculator() {
         <div className="mt-4 relative">
           <p className="text-lg">Your weighted KISD GPA: {weightedGpa}</p>
           <p className="text-lg">Your unweighted GPA: {UnweightedGpa}</p>
+        </div>
+        
+      )}
+         {showSavedGpas && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg w-1/2">
+            <h2 className="text-2xl font-bold mb-4 text-center">Saved GPAs</h2>
+            {savedGpas.length > 0 ? (
+              <ul>
+                {savedGpas.map((gpa, index) => (
+                  <li key={index} className="mb-4 border-b pb-2">
+                    <p>
+                      <strong>Name:</strong> {gpa.name}
+                    </p>
+                    <p>
+                      <strong>ACA Courses:</strong> {gpa.academicGrades || 'N/A'}
+                    </p>
+                    <p>
+                      <strong>KAP/AP Courses:</strong> {gpa.kapApGrades || 'N/A'}
+                    </p>
+                    <p>
+                      <strong>Weighted GPA:</strong> {gpa.weightedGpa}
+                    </p>
+                    <p>
+                      <strong>Unweighted GPA:</strong> {gpa.unweightedGpa}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className = "text-center">No GPA calculations are saved to this browser.</p>
+            )}
+            <div className = "flex items-center justify-center">
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mt-3"
+              onClick={handleCloseSaved}
+            >
+              Close
+            </button>
+            <button
+              className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3 h-auto mt-3"
+              onClick={handleUnsaveAll}
+            >
+              Clear
+            </button>
+</div>
+          </div>
         </div>
       )}
     </div>

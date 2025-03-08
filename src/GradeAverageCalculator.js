@@ -6,8 +6,15 @@ function GradeAverageCalculator() {
   const [others, setOthers] = useState('');
   const [results, setResults] = useState(null);
   const [calculationMade, setCalculationMade] = useState(false);
+  const [savedGrades, setSavedGrades] = useState([]);
+  const [showSavedGrades, setShowSavedGrades] = useState(false);
 
   useEffect(() => {
+    const saved = localStorage.getItem('savedGrades');
+    if (saved) {
+      setSavedGrades(JSON.parse(saved));
+    }
+
     const savedMajors = localStorage.getItem('majors');
     const savedMinors = localStorage.getItem('minors');
     const savedOthers = localStorage.getItem('others');
@@ -21,36 +28,11 @@ function GradeAverageCalculator() {
     const sanitizedValue = e.target.value.replace(/[^0-9.,\s]/g, '');
     setter(sanitizedValue);
   };
-  const isDataSaved =
-  localStorage.getItem('majors') ||
-  localStorage.getItem('minors') ||
-  localStorage.getItem('others');
-  const clearResults = () => {
-    if (!localStorage.getItem('majors') && !localStorage.getItem('minors') && !localStorage.getItem('others')) {
-      setMajors('');
-      setMinors('');
-      setOthers('');
-    }
-    setResults(null);
-    setCalculationMade(false);
-  };
-  const handleReset = () => {
-    localStorage.removeItem('majors');
-    localStorage.removeItem('minors');
-    localStorage.removeItem('others');
-    localStorage.removeItem('results'); 
-    setMajors('');
-    setMinors('');
-    setOthers('');
-    setResults(null); 
-    setCalculationMade(false); 
-    alert("Saved data cleared.");
-  };
   const calculateAverage = () => {
     const calculateAverageForCategory = (gradesString) => {
       if (!gradesString) return 0;
-      const gradesList = gradesString.split(',').map(grade => parseFloat(grade.trim()));
-      const validGrades = gradesList.filter(grade => !isNaN(grade));
+      const gradesList = gradesString.split(',').map((grade) => parseFloat(grade.trim()));
+      const validGrades = gradesList.filter((grade) => !isNaN(grade));
       if (validGrades.length === 0) return 0;
       return validGrades.reduce((sum, grade) => sum + grade, 0) / validGrades.length;
     };
@@ -61,10 +43,9 @@ function GradeAverageCalculator() {
 
     let finalAvgKap, finalAvgAca, finalAvgAp;
 
-    const majorsCount = majors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
-    const minorsCount = minors.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
-    const othersCount = others.split(',').filter(grade => !isNaN(parseFloat(grade.trim()))).length;
-
+    const majorsCount = majors.split(',').filter((grade) => !isNaN(parseFloat(grade.trim()))).length;
+    const minorsCount = minors.split(',').filter((grade) => !isNaN(parseFloat(grade.trim()))).length;
+    const othersCount = others.split(',').filter((grade) => !isNaN(parseFloat(grade.trim()))).length;
 
     if (majorsCount >= 1 && minorsCount === 0 && othersCount === 0) {
       finalAvgKap = avgMajors;
@@ -98,15 +79,48 @@ function GradeAverageCalculator() {
 
     setResults({ kap: finalAvgKap, aca: finalAvgAca, ap: finalAvgAp });
     setCalculationMade(true);
-  }
-
-  const handleSave = () => {
-    localStorage.setItem('majors', majors);
-    localStorage.setItem('minors', minors);
-    localStorage.setItem('others', others);
-    alert("Grades saved to this browser!");
   };
-  const saveButtonColor = calculationMade ? 'bg-blue-600 hover:bg-blue-900' : 'bg-blue-200';
+  const clearResults = () => {
+    setMajors('');
+    setMinors('');
+    setOthers('');
+    setResults(null);
+    setCalculationMade(false);
+  };
+  const handleSave = () => {
+    const name = prompt('Enter a name for this class:');
+    if (name) {
+      const newSavedGrade = {
+        name: name,
+        majors: majors,
+        minors: minors,
+        others: others,
+        results: results,
+      };
+      const updatedSavedGrades = [...savedGrades, newSavedGrade];
+      setSavedGrades(updatedSavedGrades);
+      localStorage.setItem('savedGrades', JSON.stringify(updatedSavedGrades));
+      alert('Class saved!');
+      setMajors('');
+      setMinors('');
+      setOthers('');
+      setResults(null);
+      setCalculationMade(false);
+    }
+  };
+
+  const handleViewSaved = () => {
+    setShowSavedGrades(true);
+  };
+
+  const handleCloseSaved = () => {
+    setShowSavedGrades(false);
+  };
+  const handleUnsaveAll = () => {
+    setSavedGrades([]);
+    localStorage.removeItem('savedGrades');
+  };
+
   return (
     <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Class Average</h2>
@@ -138,28 +152,27 @@ function GradeAverageCalculator() {
         >
           Calculate
         </button>
-        {isDataSaved ? (
-          <button
-            className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3"
-            onClick={handleReset}
-          >
-            Unsave
-          </button>
-        ) : (
-          <button
-            className={`${saveButtonColor} text-white font-bold py-2 px-4 rounded ml-3`}
-            onClick={handleSave}
-            disabled={!calculationMade}
-          >
-            Save
-          </button> ) }
+        <button
+          className="bg-green-600 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-3"
+          onClick={handleViewSaved}
+        >
+          View
+        </button>
         {results && (
-          <button
-            onClick={clearResults}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3"
-          >
-            Done
-          </button>
+          <>
+            <button
+              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded ml-3"
+              onClick={handleSave}
+            >
+              Save
+            </button>
+            <button
+              onClick={clearResults}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3"
+            >
+              Done
+            </button>
+          </>
         )}
       </div>
 
@@ -170,8 +183,52 @@ function GradeAverageCalculator() {
           <p>AP Average: {results.ap.toFixed(2)}</p>
         </div>
       )}
+
+
+      {showSavedGrades && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg w-1/2">
+            <h2 className="text-2xl font-bold mb-4 text-center">Saved Grades</h2>
+            {savedGrades.length > 0 ? (
+              <ul>
+                {savedGrades.map((grade, index) => (
+                  <li key={index} className="mb-4 border-b pb-2">
+                    <p><strong>Name:</strong> {grade.name}</p>
+                    <p><strong>Majors:</strong> {grade.majors || 'N/A'}</p>
+                    <p><strong>Minors:</strong> {grade.minors || 'N/A'}</p>
+                    <p><strong>Others:</strong> {grade.others || 'N/A'}</p>
+                    {grade.results && (
+                      <div>
+                        <p><strong>KAP Average:</strong> {grade.results.kap.toFixed(2)}</p>
+                        <p><strong>ACA Average:</strong> {grade.results.aca.toFixed(2)}</p>
+                        <p><strong>AP Average:</strong> {grade.results.ap.toFixed(2)}</p>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className = "text-center">No classes are saved to this browser.</p>
+            )}
+            <div className = "flex items-center justify-center">
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mt-3"
+              onClick={handleCloseSaved}
+            >
+              Close
+            </button>
+            <button
+              className="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-3 h-auto mt-3"
+              onClick={handleUnsaveAll}
+            >
+              Clear
+            </button>
+</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default GradeAverageCalculator;
+export default GradeAverageCalculator; 

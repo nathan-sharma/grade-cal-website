@@ -186,7 +186,7 @@ function SemesterCalculator() {
       )}
       {showSavedSemesters && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div className="bg-white p-8 rounded-lg w-1/2 max-w-[90vw] max-h-[90vh] overflow-y-auto overflow-x-auto">
+    <div className="bg-white p-8 rounded-lg w-1/2 max-w-[70vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
       <h2 className="text-2xl font-bold mb-4 text-center">Saved Semesters</h2>
       {savedSemesters.length > 0 ? (
         <ul>

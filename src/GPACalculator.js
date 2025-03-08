@@ -198,7 +198,7 @@ function GPACalculator() {
       )}
          {showSavedGpas && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg w-1/2 max-w-[90vw] max-h-[90vh] overflow-y-auto overflow-x-auto">
+          <div className="bg-white p-8 rounded-lg w-1/2 max-w-[70vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
             <h2 className="text-2xl font-bold mb-4 text-center">Saved GPAs</h2>
             {savedGpas.length > 0 ? (
               <ul>

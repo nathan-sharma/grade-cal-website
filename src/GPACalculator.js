@@ -238,7 +238,7 @@ function GPACalculator() {
                     </p>
                     <button
       onClick={() => handleRemoveGpa(index)}
-      className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin
+      className="text-red-600 hover:text-red-800 mt-2 underline" 
     >
       Remove
     </button>

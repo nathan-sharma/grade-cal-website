@@ -100,7 +100,6 @@ function GradeAverageCalculator() {
       const updatedSavedGrades = [...savedGrades, newSavedGrade];
       setSavedGrades(updatedSavedGrades);
       localStorage.setItem('savedGrades', JSON.stringify(updatedSavedGrades));
-      alert('Class saved!');
       setMajors('');
       setMinors('');
       setOthers('');
@@ -188,7 +187,21 @@ function GradeAverageCalculator() {
       {showSavedGrades && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg w-1/2 max-w-[70vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
-            <h2 className="text-2xl font-bold mb-4 text-center">Saved Grades</h2>
+            <h2 className="text-2xl font-bold mb-2 text-center">Saved Grades</h2>
+            <div className = "flex items-center justify-center">
+            <button
+              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mt-1 mb-3"
+              onClick={handleCloseSaved}
+            >
+              Close
+            </button>
+            <button
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3 h-auto mt-1 mb-3"
+              onClick={handleUnsaveAll}
+            >
+              Clear
+            </button>
+</div>
             {savedGrades.length > 0 ? (
               <ul>
                 {savedGrades.map((grade, index) => (
@@ -210,20 +223,6 @@ function GradeAverageCalculator() {
             ) : (
               <p className = "text-center">No classes saved to this browser.</p>
             )}
-            <div className = "flex items-center justify-center">
-            <button
-              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={handleCloseSaved}
-            >
-              Close
-            </button>
-            <button
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3 h-auto mt-4"
-              onClick={handleUnsaveAll}
-            >
-              Clear
-            </button>
-</div>
           </div>
         </div>
       )}

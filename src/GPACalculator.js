@@ -115,7 +115,6 @@ function GPACalculator() {
       setSavedGpas(updatedSavedGpas);
       // Save the updated GPAs to localStorage
       localStorage.setItem('savedGpas', JSON.stringify(updatedSavedGpas));
-      alert('GPA calculation saved!');
       setAcademicGrades('');
       setKapApGrades('');
       setWeightedGpa(null);
@@ -199,7 +198,21 @@ function GPACalculator() {
          {showSavedGpas && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg w-1/2 max-w-[70vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
-            <h2 className="text-2xl font-bold mb-4 text-center">Saved GPAs</h2>
+            <h2 className="text-2xl font-bold mb-2 text-center">Saved GPAs</h2>
+            <div className = "flex items-center justify-center">
+            <button
+              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mt-1 mb-3"
+              onClick={handleCloseSaved}
+            >
+              Close
+            </button>
+            <button
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3 h-auto mt-1 mb-3"
+              onClick={handleUnsaveAll}
+            >
+              Clear
+            </button>
+</div>
             {savedGpas.length > 0 ? (
               <ul>
                 {savedGpas.map((gpa, index) => (
@@ -223,22 +236,8 @@ function GPACalculator() {
                 ))}
               </ul>
             ) : (
-              <p className = "text-center">No GPA calculations saved to this browser.</p>
+              <p className = "text-center">No GPAs saved to this browser.</p>
             )}
-            <div className = "flex items-center justify-center">
-            <button
-              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={handleCloseSaved}
-            >
-              Close
-            </button>
-            <button
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded ml-3 h-auto mt-4"
-              onClick={handleUnsaveAll}
-            >
-              Clear
-            </button>
-</div>
           </div>
         </div>
       )}

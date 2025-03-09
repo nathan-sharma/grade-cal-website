@@ -148,7 +148,7 @@ function GPACalculator() {
   };
   return (
     
-    <div className="p-8 bg-white">
+    <div className="md:p-8 p-4 bg-white">
       <h2 className="text-2xl font-bold mb-4">GPA</h2>
       <input
         type="text"
@@ -209,7 +209,7 @@ function GPACalculator() {
       )}
          {showSavedGpas && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg w-1/2 w-[90vw] h-[70vh] overflow-y-auto overflow-x-auto">
+          <div className="bg-white p-8 rounded-lg w-1/2 w-[90vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
             <h2 className="text-2xl font-bold mb-2 text-center">Saved GPAs</h2>
             <div className = "flex items-center justify-center">
             <button

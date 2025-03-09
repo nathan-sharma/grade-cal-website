@@ -37,20 +37,19 @@ function HowToUse() {
                 </p>
                 <p> <p className="mt-3">
                 Say you want to add an assignment worth 1/3 of a minor grade, or a fraction of a certain category. 
-Let the assignment weigh 1/n of that category (major, minor, other). 
-Let there be k grades total entered in that category, including the partially weighted one.
-Let P = (Partially weighted assignment score)/n and let Q = [(n-1)/[n(k-1)]][(sum of all other grades in that category)]. Calculate the values of P and Q. 
-Then, you can enter the numerical sum of P and Q in the corresponding placeholder.
+Let the assignment weigh 1/n of a major, minor, or other grade. 
+Let there be k grades total entered in that category (including the partially weighted one).
+You would enter the numerical value of [(partially weighted assignment score)  + n(sum of all other scores in that category)]/[1 + n(k-1)] in the corresponding category placeholder.
                 </p>
                 <p className = "mt-1 mb-1">Example: I got a 95 on an assigment worth 1/3 of a minor grade, and I want to add that to my minor grade scores of 100, 98, 97, and 100. I would do:  </p>
                    <div className = "flex flex-col">
                     <p>1/n = 1/3</p> 
                     <p>k = 5</p>
-                   <p>P = (95)/3 = 31.66</p>
-                   <p> Q = [(2)/[3(4)]][(100 + 98 + 97 + 100)] = 65.83</p>
-                   <p>P + Q = 65.83 + 31.66 = 97.49</p>
+                   <p> [(partially weighted assignment score)  + n(sum of all other scores in that category)]/[1 + n(k-1)]  = </p>
+                   <p>[95 + 3(100 + 98 + 97 + 100)]/[1 + 3(5-1)] = </p>
+                   <p>1280/13 = 98.46</p>
                    </div>
-                   <span>Minor grade placeholder:</span> <span className = "font-bold">97.49</span>
+                   <span>Minor grade placeholder:</span> <span className = "font-bold">98.46</span>
                 
               
                 </p>

@@ -115,7 +115,7 @@ function SemesterCalculator() {
       localStorage.setItem('savedSemesters', JSON.stringify(updatedSavedSemesters));
     };
   return (
-    <div className="bg-white p-8">
+    <div className="bg-white p-8 mb-4">
       <h2 className="text-2xl font-bold mb-4">Semester Exam</h2>
       <input
         type="number"
@@ -196,7 +196,7 @@ function SemesterCalculator() {
       )}
       {showSavedSemesters && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div className="bg-white p-8 rounded-lg w-1/2 max-w-[70vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
+    <div className="bg-white p-8 rounded-lg w-1/2 w-[90vw] h-[70vh]  overflow-y-auto overflow-x-auto">
       <h2 className="text-2xl font-bold mb-2 text-center">Saved Semesters</h2>
       <div className = "flex items-center justify-center">
             <button
@@ -244,7 +244,7 @@ function SemesterCalculator() {
                   </p>
                 </div>
               )}
-               <div className = "flex md:flex-row flex-col">
+               <div className = "flex">
               <button
       onClick={() => handleRemoveSemesters(index)}
       className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin

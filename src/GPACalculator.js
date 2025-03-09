@@ -209,7 +209,7 @@ function GPACalculator() {
       )}
          {showSavedGpas && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg w-1/2 max-w-[70vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
+          <div className="bg-white p-8 rounded-lg w-1/2 w-[90vw] h-[70vh] overflow-y-auto overflow-x-auto">
             <h2 className="text-2xl font-bold mb-2 text-center">Saved GPAs</h2>
             <div className = "flex items-center justify-center">
             <button
@@ -244,7 +244,7 @@ function GPACalculator() {
                     <p>
                       <strong>Unweighted GPA:</strong> {gpa.unweightedGpa}
                     </p>
-                    <div className = "flex md:flex-row flex-col">
+                    <div className = "flex flex-wrap">
                     <button
       onClick={() => handleRemoveGpa(index)}
       className="text-red-600 hover:text-red-800 mt-2 underline" 

@@ -116,7 +116,7 @@ function SemesterCalculator() {
     };
   return (
     <div className="bg-white p-8 mb-7">
-      <h2 className="text-2xl font-bold mb-4">Semester Exam</h2>
+      <h2 className="text-2xl font-bold mb-1">Semester Exam</h2>
       <input
         type="number"
         placeholder="1st SW"

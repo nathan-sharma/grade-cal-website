@@ -32,6 +32,28 @@ function HowToUse() {
                         className="max-w-full md:max-w-[30%] h-auto rounded-md shadow-md"
                     />
                 </div>
+                <p className="mt-3 font-bold">
+               Advanced (for the nerds)
+                </p>
+                <p> <p className="mt-3">
+                Say you want to add an assignment worth 1/3 of a minor grade, or a fraction of a certain category. 
+Let the assignment weigh 1/n of that category (major, minor, other). 
+Let there be k grades total entered in that category, including the partially weighted one.
+Let P = (Partially weighted assignment score)/n and let Q = [(n-1)/[n(k-1)]][(sum of all other grades in that category)]. Calculate the values of P and Q. 
+Then, you can enter the numerical sum of P and Q in the corresponding placeholder.
+                </p>
+                <p className = "mt-1 mb-1">Example: I got a 95 on an assigment worth 1/3 of a minor grade, and I want to add that to my minor grade scores of 100, 98, 97, and 100. I would do:  </p>
+                   <div className = "flex flex-col">
+                    <p>1/n = 1/3</p> 
+                    <p>k = 5</p>
+                   <p>P = (95)/3 = 31.66</p>
+                   <p> Q = [(2)/[3(4)]][(100 + 98 + 97 + 100)] = 65.83</p>
+                   <p>P + Q = 65.83 + 31.66 = 97.49</p>
+                   </div>
+                   <span>Minor grade placeholder:</span> <span className = "font-bold">97.49</span>
+                
+              
+                </p>
             <h1 className="text-xl underline mt-8">GPA Calculator</h1>
             <p className = "mt-3">Students can utilize the GPA calculator to calculate their current GPAs, future GPAs, and the GPAs of competitors. Entries must be in the following format: Letter grade(Number of semesters), separated by commas. Input the number of semesters each letter grade was earned in parentheses, and make sure to include high school credit courses taken in middle school in the calculation. </p>
             <div className="flex flex-col md:flex-row mt-4 gap-4 justify-center items-center">

@@ -8,7 +8,13 @@ function GradeAverageCalculator() {
   const [calculationMade, setCalculationMade] = useState(false);
   const [savedGrades, setSavedGrades] = useState([]);
   const [showSavedGrades, setShowSavedGrades] = useState(false);
-
+  const handleCalculateSaved = (grade) => {
+    setMajors(grade.majors || '');
+    setMinors(grade.minors || '');
+    setOthers(grade.others || '');
+    calculateAverage();
+    setShowSavedGrades(false); // Close the saved grades list
+  };
   useEffect(() => {
     const saved = localStorage.getItem('savedGrades');
     if (saved) {
@@ -222,12 +228,21 @@ function GradeAverageCalculator() {
                         <p><strong>AP Average:</strong> {grade.results.ap.toFixed(2)}</p>
                       </div>
                     )}
+                     <div className = "flex md:flex-row flex-col">
                     <button
       onClick={() => handleRemoveClass(index)}
       className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin
     >
+     
       Remove
     </button>
+    <button
+                      onClick={() => handleCalculateSaved(grade)}
+                      className="text-blue-600 hover:text-blue-800 mt-2 ml-3 underline"
+                    >
+                      Enter in calculator
+                    </button>
+                    </div>
                   </li>
                 ))}
               </ul>

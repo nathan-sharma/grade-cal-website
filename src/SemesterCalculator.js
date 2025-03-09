@@ -7,6 +7,13 @@ function SemesterCalculator() {
   const [results, setResults] = useState(null);
   const [savedSemesters, setSavedSemesters] = useState([]);
   const [showSavedSemesters, setShowSavedSemesters] = useState(false);
+  const handleCalculateSaved = (grade) => {
+    setSw1(grade.sw1 || '');
+    setSw2(grade.sw2 || '');
+    setSw3(grade.sw3 || '');
+    calculate();
+    setShowSavedSemesters(false); // Close the saved grades list
+  };
 
   useEffect(() => {
     const savedSW1 = localStorage.getItem('sw1');
@@ -237,12 +244,20 @@ function SemesterCalculator() {
                   </p>
                 </div>
               )}
+               <div className = "flex md:flex-row flex-col">
               <button
       onClick={() => handleRemoveSemesters(index)}
       className="text-red-600 hover:text-red-800 mt-2 underline" // Add some top margin
     >
       Remove
     </button>
+    <button
+                      onClick={() => handleCalculateSaved(semester)}
+                      className="text-blue-600 hover:text-blue-800 mt-2 ml-3 underline"
+                    >
+                      Enter in calculator
+                    </button>
+                    </div>
             </li>
           ))}
         </ul>

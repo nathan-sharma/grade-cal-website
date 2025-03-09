@@ -8,6 +8,14 @@ function GPACalculator() {
   const [savedGpas, setSavedGpas] = useState([]);
   const [calculationMade, setCalculationMade] = useState(false);
   const [showSavedGpas, setShowSavedGpas] = useState(false);
+  const handleCalculateSaved = (grade) => {
+    setAcademicGrades(grade.academicGrades || '');
+    setKapApGrades(grade.kapApGrades || '');
+    setWeightedGpa(grade.weightedGpa || '');
+    setUnweightedGpa(grade.UnweightedGpa || '');
+    calculateGPA();
+    setShowSavedGpas(false); // Close the saved grades list
+  };
 
   useEffect(() => {
     const savedAcademic = localStorage.getItem('academicGrades');
@@ -236,12 +244,20 @@ function GPACalculator() {
                     <p>
                       <strong>Unweighted GPA:</strong> {gpa.unweightedGpa}
                     </p>
+                    <div className = "flex md:flex-row flex-col">
                     <button
       onClick={() => handleRemoveGpa(index)}
       className="text-red-600 hover:text-red-800 mt-2 underline" 
     >
       Remove
     </button>
+    <button
+                      onClick={() => handleCalculateSaved(gpa)}
+                      className="text-blue-600 hover:text-blue-800 mt-2 ml-3 underline"
+                    >
+                      Enter in calculator 
+                    </button>
+                    </div>
                   </li>
                 ))}
               </ul>

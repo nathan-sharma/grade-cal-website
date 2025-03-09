@@ -33,21 +33,19 @@ function HowToUse() {
                     />
                 </div>
                 <p className="mt-3 font-bold">
-               Advanced (for the nerds)
+               Advanced (for nerds)
                 </p>
-                <p> <p className="mt-3">
-                Say you want to add an assignment worth 1/3 of a minor grade, or a fraction of a certain category. 
-Let the assignment weigh 1/n of a major, minor, or other grade. 
-Let there be k grades total entered in that category (including the partially weighted one).
-You would enter the numerical value of [(partially weighted assignment score)  + n(sum of all other scores in that category)]/[1 + n(k-1)] in the corresponding category placeholder.
+                <p> <p className = "mt-2">
+                Say you want to add an assignment worth a fraction of a specific type of grade (major, minor, other). Let the assignment weigh 1/n of a major, minor, or other grade, and let k be the total number of grades entered in that category (including the partially weighted one.) You would then enter the numerical value of [(partially weighted assignment score) + n(sum of all other scores in that category)]/[1 + n(k-1)] in the corresponding category placeholder.
                 </p>
-                <p className = "mt-1 mb-1">Example: I got a 95 on an assigment worth 1/3 of a minor grade, and I want to add that to my minor grade scores of 100, 98, 97, and 100. I would do:  </p>
+                <p className = "mt-2 mb-1">Example: I got a 95 on an assignment worth 1/3 of a minor grade, and I want to add that to my minor grade scores of 100, 98, 97, and 100.  </p>
                    <div className = "flex flex-col">
                     <p>1/n = 1/3</p> 
-                    <p>k = 5</p>
-                   <p> [(partially weighted assignment score)  + n(sum of all other scores in that category)]/[1 + n(k-1)]  = </p>
-                   <p>[95 + 3(100 + 98 + 97 + 100)]/[1 + 3(5-1)] = </p>
-                   <p>1280/13 = 98.46</p>
+                    <p className = "mt-1">n = 3</p>
+                    <p className = "mt-1">k = 5</p>
+                   <p className = "mt-1"> [(partially weighted assignment score)  + n(sum of all other scores in that category)]/[1 + n(k-1)]  = </p>
+                   <p className = "mt-1">[95 + 3(100 + 98 + 97 + 100)]/[1 + 3(5-1)] = </p>
+                   <p className = "mt-1 mb-1">1280/13 = 98.46</p>
                    </div>
                    <span>Minor grade placeholder:</span> <span className = "font-bold">98.46</span>
                 

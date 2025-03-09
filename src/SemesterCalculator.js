@@ -115,7 +115,7 @@ function SemesterCalculator() {
       localStorage.setItem('savedSemesters', JSON.stringify(updatedSavedSemesters));
     };
   return (
-    <div className="bg-white md:p-8 p-4 mb-7">
+    <div className="bg-white p-8 mb-7">
       <h2 className="text-2xl font-bold mb-4">Semester Exam</h2>
       <input
         type="number"

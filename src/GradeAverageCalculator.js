@@ -131,7 +131,7 @@ function GradeAverageCalculator() {
     localStorage.setItem('savedGrades', JSON.stringify(updatedSavedGrades));
   };
   return (
-    <div className="bg-white md:p-8 p-4">
+    <div className="bg-white p-8">
       <h2 className="text-2xl font-bold mb-4">Class Average</h2>
       <input
         type="text"

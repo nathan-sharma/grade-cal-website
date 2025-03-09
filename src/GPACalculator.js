@@ -148,7 +148,7 @@ function GPACalculator() {
   };
   return (
     
-    <div className="md:p-8 p-4 bg-white">
+    <div className="p-8 bg-white">
       <h2 className="text-2xl font-bold mb-4">GPA</h2>
       <input
         type="text"

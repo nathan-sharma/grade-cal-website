@@ -33,7 +33,7 @@ function Calculator() {
 
   return (
     <div>
-      <div className="calculator mt-4 border p-4 rounded-md shadow-md sm:w-full w-[90vw] mx-auto flex items-center justify-center sm:flex-row flex-col">
+      <div className="calculator mt-4 border p-4 rounded-md shadow-md sm:w-full mx-auto flex items-center justify-center sm:flex-row flex-col">
         <label htmlFor="category" className="block mb-1">Category:</label>
         <select
           id="category"

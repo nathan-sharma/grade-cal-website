@@ -57,11 +57,13 @@ function HowToUse() {
                 <div className="mt-4">
           <button
             onClick={toggleCalculator}
-            className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900"
+            className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900 sm:hidden"
           >
             {isCalculatorVisible ? 'Hide Calculator' : 'Show Advanced Calculator'}
           </button>
-          {isCalculatorVisible && <Calculator />}
+          <div className={isCalculatorVisible ? "block" : "hidden sm:block"}>
+          <Calculator/>
+          </div>
         </div>
             <h1 className="text-xl underline mt-5">GPA Calculator</h1>
             <p className = "mt-3">Students can utilize the GPA calculator to calculate their current GPAs, future GPAs, and the GPAs of competitors. Entries must be in the following format: Letter grade(Number of semesters), separated by commas. Input the number of semesters each letter grade was earned in parentheses, and make sure to include high school credit courses taken in middle school in the calculation. </p>

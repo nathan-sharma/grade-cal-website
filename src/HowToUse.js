@@ -2,8 +2,13 @@ import React from 'react';
 import Navbar from './Navbar'; 
 import Footer from './Footer';
 import Calculator from './Calculator.js'
+import { useState } from 'react';
 
 function HowToUse() {
+    const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
+    const toggleCalculator = () => {
+      setIsCalculatorVisible(!isCalculatorVisible);
+    };
     return (
         <div className="App flex flex-col min-h-screen justify-start bg-gray-200">
             <Navbar />
@@ -49,7 +54,15 @@ function HowToUse() {
                    </div>
                    <span>Calculator output: replace minor grade inputs with</span> <span className = "font-bold">98.46</span> 
                 </p>
-                <Calculator/>
+                <div className="mt-4">
+          <button
+            onClick={toggleCalculator}
+            className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900"
+          >
+            {isCalculatorVisible ? 'Hide Calculator' : 'Show Calculator'}
+          </button>
+          {isCalculatorVisible && <Calculator />}
+        </div>
             <h1 className="text-xl underline mt-5">GPA Calculator</h1>
             <p className = "mt-3">Students can utilize the GPA calculator to calculate their current GPAs, future GPAs, and the GPAs of competitors. Entries must be in the following format: Letter grade(Number of semesters), separated by commas. Input the number of semesters each letter grade was earned in parentheses, and make sure to include high school credit courses taken in middle school in the calculation. </p>
             <div className="flex flex-col md:flex-row mt-4 gap-4 justify-center items-center">

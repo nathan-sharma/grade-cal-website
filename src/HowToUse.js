@@ -59,7 +59,7 @@ function HowToUse() {
             onClick={toggleCalculator}
             className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900"
           >
-            {isCalculatorVisible ? 'Hide Calculator' : 'Show Calculator'}
+            {isCalculatorVisible ? 'Hide Calculator' : 'Show Advanced Calculator'}
           </button>
           {isCalculatorVisible && <Calculator />}
         </div>

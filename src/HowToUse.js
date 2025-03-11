@@ -44,7 +44,7 @@ function HowToUse() {
                    <p>P = 95</p>
                     <p className = "mt-1">1/n = 1/3</p> 
                     <p className = "mt-1">n = 3</p>
-                    <p className = "mt-1">S = 100 + 98 + 97 = 395</p>
+                    <p className = "mt-1">S = 100 + 98 + 97 + 100 = 395</p>
                     <p className = "mt-1">k = 4 + 1 = 5</p>
                    </div>
                    <span>Calculator output: replace minor grade inputs with</span> <span className = "font-bold">98.46</span> 

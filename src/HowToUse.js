@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar'; 
 import Footer from './Footer';
+import Calculator from './Calculator.js'
 
 function HowToUse() {
     return (
@@ -36,19 +37,19 @@ function HowToUse() {
                Advanced (for nerds)
                 </p>
                 <p> <p className = "mt-2">
-                Say you want to add an assignment worth a fraction of a specific type of grade (major, minor, other). Let the assignment weigh 1/n of a major, minor, or other grade, and let k be the total number of grades you have for that category (including the partially weighted one.) You would then replace your inputs with the numerical value of [(partially weighted assignment score) + n(sum of all other scores in that category)]/[1 + n(k-1)] in the corresponding category placeholder.
-                </p>
+                Say you want to add an assignment worth a fraction of a specific grade (major, minor, other). Let the assignment weigh 1/n of a major, minor, or other grade, and let k be the total number of grades you have for that category (including the partially weighted one.) Let P be the partially weighted assignment score and S be the sum of all other scores in that category, excluding the partially weighted assignment score. Input these values into the calculator below to find the number to replace your category inputs.
+               </p>
                    <div className = "mt-2 flex flex-col ">
                    <p>Example: I got a 95 on an assignment worth 1/3 of a minor grade, and I want to add that to my minor grade scores of 100, 98, 97, and 100.  </p>
-                    <p>1/n = 1/3</p> 
+                   <p>P = 95</p>
+                    <p className = "mt-1">1/n = 1/3</p> 
                     <p className = "mt-1">n = 3</p>
-                    <p className = "mt-1">k = 5</p>
-                   <p className = "mt-1"> [(partially weighted assignment score)  + n(sum of all other scores in that category)]/[1 + n(k-1)]  = </p>
-                   <p className = "mt-1">[95 + 3(100 + 98 + 97 + 100)]/[1 + 3(5-1)] = </p>
-                   <p className = "mt-1 mb-1">1280/13 = 98.46</p>
+                    <p className = "mt-1">S = 100 + 98 + 97 = 395</p>
+                    <p className = "mt-1">k = 4 + 1 = 5</p>
                    </div>
-                   <span>Minor grade placeholder:</span> <span className = "font-bold">98.46</span> 
+                   <span>Calculator output: replace minor grade inputs with</span> <span className = "font-bold">98.46</span> 
                 </p>
+                <Calculator/>
             <h1 className="text-xl underline mt-5">GPA Calculator</h1>
             <p className = "mt-3">Students can utilize the GPA calculator to calculate their current GPAs, future GPAs, and the GPAs of competitors. Entries must be in the following format: Letter grade(Number of semesters), separated by commas. Input the number of semesters each letter grade was earned in parentheses, and make sure to include high school credit courses taken in middle school in the calculation. </p>
             <div className="flex flex-col md:flex-row mt-4 gap-4 justify-center items-center">

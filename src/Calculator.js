@@ -33,7 +33,7 @@ function Calculator() {
 
   return (
     <div>
-      <div className="calculator mt-4 border p-4 rounded-md shadow-md sm:w-full mx-auto flex items-center justify-center sm:flex-row flex-col">
+      <div className="calculator mt-4 border p-4 rounded-md border-gray-300 shadow-md sm:w-full mx-auto flex items-center justify-center sm:flex-row flex-col">
         <label htmlFor="category" className="block mb-1">Category:</label>
         <select
           id="category"
@@ -57,7 +57,7 @@ function Calculator() {
         <label htmlFor="kValue" className="block mb-1 ml-3">k:</label>
         <input type="number" id="kValue" value={kValue} onChange={(e) => setKValue(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
 
-        <button onClick={calculate} className="ml-3 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900">Calculate</button>
+        <button onClick={calculate} className="md:ml-3 ml-1 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900 md:w-auto w-full mt-3">Calculate</button>
       </div>
       {isResultVisible && result && (
         <div className="mt-4 text-center">

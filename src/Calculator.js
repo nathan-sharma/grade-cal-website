@@ -57,7 +57,7 @@ function Calculator() {
         <label htmlFor="kValue" className="block mb-2 ml-3 mt-2">k:</label>
         <input type="number" id="kValue" value={kValue} onChange={(e) => setKValue(e.target.value)} className="border p-2 w-full md:mb-0 mb-2 ml-2" />
 
-        <button onClick={calculate} className="md:ml-3 ml-2 bg-blue-600 text-white p-3 rounded-md hover:bg-blue-900 md:w-auto w-full md:mt-0 mt-3">Calculate</button>
+        <button onClick={calculate} className="md:ml-3 ml-2 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900 md:w-auto w-full md:mt-0 mt-3">Calculate</button>
       </div>
       {isResultVisible && result && (
         <div className="mt-4 text-center">

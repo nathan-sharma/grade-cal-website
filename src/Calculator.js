@@ -51,7 +51,7 @@ function Calculator() {
         <label htmlFor="nValue" className="block mb-1 ml-3">n:</label>
         <input type="number" id="nValue" value={nValue} onChange={(e) => setNValue(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
 
-        <label htmlFor="sumOtherScores" className="block mb-1 ml-3 text-sm">S:</label>
+        <label htmlFor="sumOtherScores" className="block mb-1 ml-3">S:</label>
         <input type="number" id="sumOtherScores" value={sumOtherScores} onChange={(e) => setSumOtherScores(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
 
         <label htmlFor="kValue" className="block mb-1 ml-3">k:</label>

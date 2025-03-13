@@ -34,30 +34,30 @@ function Calculator() {
   return (
     <div>
       <div className="calculator mt-4 border p-4 rounded-md border-gray-300 shadow-md sm:w-full mx-auto flex items-center justify-center sm:flex-row flex-col">
-        <label htmlFor="category" className="block mb-1">Category:</label>
+        <label htmlFor="category" className="block mb-2 mt-2">Category:</label>
         <select
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border p-2 w-full mb-2 ml-1"
+          className="border p-2 w-full md:mb-0 mb-2 ml-2"
         >
           <option value="major">Major</option>
           <option value="minor">Minor</option>
           <option value="other">Other</option>
         </select>
-        <label htmlFor="partialScore" className="block mb-1 ml-3">P:</label>
-        <input type="number" id="partialScore" value={partialScore} onChange={(e) => setPartialScore(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
+        <label htmlFor="partialScore" className="block mb-2 ml-3 mt-2">P:</label>
+        <input type="number" id="partialScore" value={partialScore} onChange={(e) => setPartialScore(e.target.value)} className="border p-2 w-full md:mb-0 mb-2 ml-2" />
 
-        <label htmlFor="nValue" className="block mb-1 ml-3">n:</label>
-        <input type="number" id="nValue" value={nValue} onChange={(e) => setNValue(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
+        <label htmlFor="nValue" className="block mb-2 ml-3 mt-2">n:</label>
+        <input type="number" id="nValue" value={nValue} onChange={(e) => setNValue(e.target.value)} className="border p-2 w-full md:mb-0 mb-2 ml-2" />
 
-        <label htmlFor="sumOtherScores" className="block mb-1 ml-3">S:</label>
-        <input type="number" id="sumOtherScores" value={sumOtherScores} onChange={(e) => setSumOtherScores(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
+        <label htmlFor="sumOtherScores" className="block mb-2 ml-3 mt-2">S:</label>
+        <input type="number" id="sumOtherScores" value={sumOtherScores} onChange={(e) => setSumOtherScores(e.target.value)} className="border p-2 w-full md:mb-0 mb-2 ml-2" />
 
-        <label htmlFor="kValue" className="block mb-1 ml-3">k:</label>
-        <input type="number" id="kValue" value={kValue} onChange={(e) => setKValue(e.target.value)} className="border p-2 w-full mb-2 ml-1" />
+        <label htmlFor="kValue" className="block mb-2 ml-3 mt-2">k:</label>
+        <input type="number" id="kValue" value={kValue} onChange={(e) => setKValue(e.target.value)} className="border p-2 w-full md:mb-0 mb-2 ml-2" />
 
-        <button onClick={calculate} className="md:ml-3 ml-1 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-900 md:w-auto w-full mt-3">Calculate</button>
+        <button onClick={calculate} className="md:ml-3 ml-2 bg-blue-600 text-white p-3 rounded-md hover:bg-blue-900 md:w-auto w-full md:mt-0 mt-3">Calculate</button>
       </div>
       {isResultVisible && result && (
         <div className="mt-4 text-center">

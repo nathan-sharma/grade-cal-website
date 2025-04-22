@@ -11,7 +11,7 @@ function HowToUse() {
     return (
         <div className="App flex flex-col min-h-screen justify-start bg-gray-200">
             <Navbar />
-            <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">How to Use the Calculators</h2>
+            <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">How to Use </h2>
             <div className="px-8 md:px-10">
                 <h1 className="text-xl underline mt-8">Class Average Calculator</h1>
                 <p className="mt-3">
@@ -38,12 +38,6 @@ function HowToUse() {
                     />
                 </div>
                 <div className="mt-4">
-          <button
-            onClick={toggleCalculator}
-            className="bg-gray-600 text-white p-2 rounded-md hover:bg-gray-900 sm:hidden"
-          >
-            {isCalculatorVisible ? 'Hide Calculator' : 'Show Advanced Calculator'}
-          </button>
           <div className={isCalculatorVisible ? "block" : "hidden sm:block"}>
           </div>
         </div>

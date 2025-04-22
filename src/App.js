@@ -12,14 +12,14 @@ function App() {
      <Navbar/>
       <div className="mt-6 p-6 w-auto h-full"> 
         <div className="flex flex-col space-y-8">
+        <div>
+          <SemesterCalculator />
+          </div>
           <div>
           <GradeAverageCalculator />
           </div>
           <div>
           <GPACalculator />
-          </div>
-          <div>
-          <SemesterCalculator />
           </div>
         </div>
       </div>

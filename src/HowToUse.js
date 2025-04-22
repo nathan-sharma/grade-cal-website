@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar'; 
 import Footer from './Footer';
-import Calculator from './Calculator.js'
 import { useState } from 'react';
 
 function HowToUse() {
@@ -38,22 +37,6 @@ function HowToUse() {
                         className="max-w-full md:max-w-[30%] h-auto rounded-md shadow-md"
                     />
                 </div>
-                <p className="mt-3 font-bold">
-               Advanced (for nerds)
-                </p>
-                <p> <p className = "mt-2">
-                Say you want to add an assignment worth a fraction of a specific grade (major, minor, other). Let the assignment weigh 1/n of a major, minor, or other grade, and let k be the total number of grades you have for that category (including the partially weighted one.) Let P be the partially weighted assignment score and S be the sum of all other scores in that category, excluding the partially weighted assignment score. Inputting these values into the calculator below will return the number you would replace your inputs for that category with.
-               </p>
-                   <div className = "mt-2 flex flex-col ">
-                   <p>Example: I got a 95 on an assignment worth 1/3 of a minor grade, and I want to add that to my minor grade scores of 100, 98, 97, and 100.  </p>
-                   <p>P = 95</p>
-                    <p className = "mt-1">1/n = 1/3</p> 
-                    <p className = "mt-1">n = 3</p>
-                    <p className = "mt-1">S = 100 + 98 + 97 + 100 = 395</p>
-                    <p className = "mt-1">k = 4 + 1 = 5</p>
-                   </div>
-                   <span>Calculator output: replace minor grade inputs (100, 98, 97, 100) with</span> <span className = "font-bold">98.46</span> 
-                </p>
                 <div className="mt-4">
           <button
             onClick={toggleCalculator}
@@ -62,7 +45,6 @@ function HowToUse() {
             {isCalculatorVisible ? 'Hide Calculator' : 'Show Advanced Calculator'}
           </button>
           <div className={isCalculatorVisible ? "block" : "hidden sm:block"}>
-          <Calculator/>
           </div>
         </div>
             <h1 className="text-xl underline mt-5">GPA Calculator</h1>

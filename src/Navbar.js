@@ -96,6 +96,12 @@ function Navbar({ setShowHowToUse }) {
           >
             How to Use
           </Link>
+          <button
+            className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
+            onClick={handleShareClick}
+          >
+            Share
+          </button>
           <Link
             to="/feedback"
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
@@ -103,12 +109,6 @@ function Navbar({ setShowHowToUse }) {
           >
             Feedback
           </Link>
-          <button
-            className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
-            onClick={handleShareClick}
-          >
-            Share
-          </button>
         </div>
       </div>
 

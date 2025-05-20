@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 function App() {
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisited');

@@ -4,6 +4,7 @@ function SemesterCalculator() {
   const [sw1, setSw1] = useState('');
   const [sw2, setSw2] = useState('');
   const [sw3, setSw3] = useState('');
+  const [testScore, setTestScore] = useState ('');
   const [results, setResults] = useState(null);
   const [savedSemesters, setSavedSemesters] = useState([]);
   const [showSavedSemesters, setShowSavedSemesters] = useState(false);
@@ -11,6 +12,7 @@ function SemesterCalculator() {
     setSw1(grade.sw1 || '');
     setSw2(grade.sw2 || '');
     setSw3(grade.sw3 || '');
+    setTestScore(grade.testScore || ''); 
     calculate();
     setShowSavedSemesters(false); // Close the saved grades list
   };
@@ -19,11 +21,13 @@ function SemesterCalculator() {
     const savedSW1 = localStorage.getItem('sw1');
     const savedSW2 = localStorage.getItem('sw2');
     const savedSW3 = localStorage.getItem('sw3');
+    const savedTestScore = localStorage.getItem('testScore');
     const savedSemestersData = localStorage.getItem('savedSemesters');
 
     if (savedSW1) setSw1(savedSW1);
     if (savedSW2) setSw2(savedSW2);
     if (savedSW3) setSw3(savedSW3);
+    if (savedTestScore) setTestScore(savedTestScore);
     if (savedSemestersData) setSavedSemesters(JSON.parse(savedSemestersData) || []);
   }, []);
 
@@ -45,6 +49,7 @@ function SemesterCalculator() {
       setSw1('');
       setSw2('');
       setSw3('');
+      setTestScore('');
     }
     setResults(null);
   };
@@ -54,8 +59,9 @@ function SemesterCalculator() {
     const get_a_b = (20 / 3) * (79.5 - 0.85 * average);
     const to_pass = (20 / 3) * (70 - 0.85 * average);
     const skibidi_toilet = 0.85 * average + 15;
+    const final_average = 0.85 * average + 0.15* testScore; 
 
-    setResults({ get_an_a, get_a_b, to_pass, skibidi_toilet });
+    setResults({ get_an_a, get_a_b, to_pass, skibidi_toilet, final_average});
   };
 
 
@@ -64,16 +70,19 @@ function SemesterCalculator() {
     localStorage.removeItem('sw1');
     localStorage.removeItem('sw2');
     localStorage.removeItem('sw3');
+    localStorage.removeItem('testScore'); 
     setSw1('');
     setSw2('');
     setSw3('');
+    setTestScore(''); 
     alert("Saved data cleared.");
   };
 
   const isDataSaved =
     localStorage.getItem('sw1') ||
     localStorage.getItem('sw2') ||
-    localStorage.getItem('sw3');
+    localStorage.getItem('sw3') || 
+    localStorage.getItem('testScore'); 
 
     const handleSave = () => {
       const name = prompt('Enter a name for this class:');
@@ -83,6 +92,7 @@ function SemesterCalculator() {
           sw1: sw1,
           sw2 : sw2,
           sw3 : sw3,
+          testScore : testScore,
         };
         const updatedSavedSemesters = [...savedSemesters, newSavedSemester];
         setSavedSemesters(updatedSavedSemesters);
@@ -90,6 +100,7 @@ function SemesterCalculator() {
         setSw1('');
         setSw2('');
         setSw3('');
+        setTestScore(''); 
       }
     };
   
@@ -136,6 +147,13 @@ function SemesterCalculator() {
         placeholder="3rd SW"
         value={sw3}
         onChange={(e) => handleInputChange(e, setSw3)}
+        className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
+      />
+        <input
+        type="number"
+        placeholder="Exam score"
+        value={testScore}
+        onChange={(e) => handleInputChange(e, setTestScore)}
         className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
       />
       <div className="flex items-center mb-4">
@@ -192,6 +210,9 @@ function SemesterCalculator() {
             Best case scenario: your average is a(n) {results.skibidi_toilet.toFixed(2)}
           </p>
           <p className>Average if exempted: {((parseInt(sw1) || 0) / 3 + (parseInt(sw2) || 0) / 3 + (parseInt(sw3) || 0) / 3).toFixed(2)} </p>
+        <p className="my-1">
+            Average with mock score: {results.final_average.toFixed(2)}
+          </p>
         </div>
       )}
       {showSavedSemesters && (
@@ -227,6 +248,9 @@ function SemesterCalculator() {
               </p>
               <p>
                 <strong>3rd SW:</strong> {semester.sw3}
+              </p>
+              <p>
+                <strong>Exam score:</strong> {semester.testScore}
               </p>
               {semester.results && (
                 <div>

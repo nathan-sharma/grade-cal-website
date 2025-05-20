@@ -61,7 +61,7 @@ function HowToUse() {
                 <p className = "mt-3 mb-4">Please note that this calculator does not yet support dual credit (4.5) courses.</p>
                 <h1 className="text-xl underline mt-5">Semester Exam Calculator</h1>
                 <p className="mt-4">
-                Input your six-week averages for any class into the SW fields. The calculator will return the minimum exam scores you need for your average to be an A or higher, B or higher, and C or higher, as well as your average if you exempted the final and your best-case scenario average.✅ Guaranteed means you will get that letter grade or higher for your average. ❌Impossible means that even with a 100 on the final exam, it would not be possible for you to receive that letter grade or higher.
+                Input your six-week averages for any class into the SW fields, and input your mock final exam score in the final row. The calculator will return the minimum exam scores you need for your average to be an A or higher, B or higher, and C or higher, as well as your average if you exempted the final, your best-case scenario average, and average with your mock exam grade. ✅ Guaranteed means you will get that letter grade or higher for your average. ❌Impossible means that even with a 100 on the final exam, it would not be possible for you to receive that letter grade or higher.
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center mt-4 gap-4">
@@ -78,7 +78,7 @@ function HowToUse() {
                 </div>
 
                 <p className="mt-3 mb-7">
-                In the example above, the student needs a 41.33 or higher on the exam to get an A in Algebra 2 for the semester. Their average is guaranteed to be B (or possibly higher). If the student is exempt from the semester exam, their average would be 98.00. If the student took the semester exam and got a 100 (best-case scenario), their average would be 98.30.
+                In the example above, the student needs a 41.33 or higher on the exam to get an A in Algebra 2 for the semester. Their average is guaranteed to be B (or possibly higher). If the student is exempt from the semester exam, their average would be 98.00. If the student took the semester exam and got a 100 (best-case scenario), their average would be 98.30. If the student took the semester exam and got their mock score (a 97), their average would be 97.85. 
                 </p>
             </div>
             <Footer />

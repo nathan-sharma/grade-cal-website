@@ -129,11 +129,10 @@ function Feedback() {
                         </div>
 
                         <button
-                            type="submit"
-                            className="mb-10 bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                            className="mb-10 bg-blue-300  text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
                             disabled={isLoading}
                         >
-                            Submit Feedback
+                            This page is a work in progress...
                         </button>
                     </form>
                     {isLoading && (

@@ -11,6 +11,7 @@ import App from './App';
 import Feedback from './Feedback'; 
 import reportWebVitals from './reportWebVitals';
 import HowToUse from './HowToUse.js'
+import MiddleSchool from './MiddleSchool.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/" element={<App />} /> 
         <Route path="/feedback" element={<Feedback/>} />
         <Route path = "/how-to-use" element ={<HowToUse/>}  />
+        <Route path = "/middle-school" element = {<MiddleSchool/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -138,10 +138,10 @@ function MiddleSchool() {
     // Also, remove "realtive" as it's not needed for this layout
     <div className="App flex flex-col items-center min-h-screen justify-start bg-gray-200 m-0">
        <Navbar/>
-      {/* Step 2: Add a new div to wrap the content and grow */}
       <div className="flex flex-col items-center flex-grow">
         <div className="mt-6 p-6 w-auto max-w-2xl h-full">
-          <div className="bg-white p-8">
+                
+          <div className="bg-white p-8 mt-5">
             <h2 className="text-2xl font-bold mb-4">JH Class Average</h2>
             <input
               type="text"
@@ -200,6 +200,28 @@ function MiddleSchool() {
                 <p>ACA Average: {results.aca.toFixed(2)}</p>
               </div>
             )}
+             <h1 className="text-xl underline mt-8 justify-start items-start">Your High School Credit Courses</h1>
+                <p className="mt-3 font-bold">
+                Updated September 12th, 2025
+                </p>
+                <p className="mt-3">
+                1. Professional Communications (4.0, 0.5 credits): Can be taken as an elective. Grades 6-8 are eligible to take this course.
+                </p>
+                <p className="mt-3">
+                2. GATEWAY TECH 1 (4.0, 0.5 credits): Can be taken as an elective. Grades 6-8 are eligible to take this course.
+                </p>
+                <p className="mt-3">
+                3. Spanish I A & B (4.0, 1 credit): Grades 8 and higher are eligible to take this course.
+                </p>
+                 <p className="mt-3">
+                4. Spanish for Spanish Speakers I or II (4.0, 1 credit for either class): Grades 8 and higher are eligible to take this course.
+                </p>
+                 <p className="mt-3">
+                5. Geometry KAP A  & B (5.0, 1 credit): Anyone who recieved credit for algebra I, either through the CBE or normally, is eligible to take this course.
+                </p>
+                <p className="mt-3">
+                6. Algebra I A  & B (EX, 1 credit): Anyone who recieved credit for 7th grade math KAP, either through the CBE or normally, is eligible to take this course. This course does not affect your high school GPA for class of 2029 onwards.
+                </p>
             {showSavedGrades && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                 <div className="bg-white p-8 rounded-lg w-1/2  w-[90vw] md:w-[40vw] max-h-[70vh] overflow-y-auto overflow-x-auto">
@@ -254,6 +276,7 @@ function MiddleSchool() {
                     <p className="text-center">No classes saved to this browser.</p>
                   )}
                 </div>
+                
               </div>
             )}
           </div>
@@ -264,6 +287,7 @@ function MiddleSchool() {
       <Footer/>
       
     </div>
+    
   );
 }
 

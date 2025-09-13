@@ -109,14 +109,14 @@ function Navbar({ setShowHowToUse }) {
           >
             Feedback
           </Link>
-
           <Link
             to="/middle-school"
             className="block md:inline-block text-gray-300 hover:text-white py-2 px-4"
             onClick={() => setIsOpen(false)}
           >
-            Middle School
+            Middle Schoolers
           </Link>
+
         </div>
       </div>
 

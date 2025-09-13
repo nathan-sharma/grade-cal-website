@@ -50,7 +50,7 @@ function HowToUse() {
                         className="max-w-full md:max-w-[35%] h-auto rounded-md shadow-md"
                     />
                 </div>
-                <p className = "mt-3">In the example transcript above, the student earned As in four and Bs in two 4.0 semesters. They also earned As in two 5.0 semesters, a B in one 5.0 semester, and Cs in two 5.0 semesters. Their calculation would be the following:</p>
+                <p className = "mt-3">In the example transcript above, the student earned As in four and Bs in two 4.0 semesters. They earned As in two 5.0 semesters, a B in one 5.0 semester, and Cs in two 5.0 semesters. They also earned As in 1 dual credit (4.5) semester and a B in another dual credit semester. Their calculation would be the following:</p>
                 <div className="flex flex-col md:flex-row mt-4 gap-4 justify-center items-center">
             <img
                         src="/gpaexample.png"
@@ -58,7 +58,7 @@ function HowToUse() {
                         className="max-w-full md:max-w-[45%] h-auto rounded-md shadow-md"
                     />
                 </div>
-                <p className = "mt-3 mb-4">Please note that this calculator does not yet support dual credit (4.5) courses.</p>
+                <p className = "mt-3 mb-4">The top row is for ACA class entries, the middle is for dual credits, and the last is for KAP class entries. If you didn't take a certain type of class you can leave that row blank.</p>
                 <h1 className="text-xl underline mt-5">Semester Exam Calculator</h1>
                 <p className="mt-4">
                 Input your six-week averages for any class into the SW fields, and input your mock final exam score in the final row. The calculator will return the minimum exam scores you need for your average to be an A or higher, B or higher, and C or higher, as well as your average if you exempted the final, your best-case scenario average, and average with your mock exam grade. ✅ Guaranteed means you will get that letter grade or higher for your average. ❌Impossible means that even with a 100 on the final exam, it would not be possible for you to receive that letter grade or higher.

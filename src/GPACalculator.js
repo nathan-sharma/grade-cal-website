@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 function GPACalculator() {
   const [academicGrades, setAcademicGrades] = useState('');
   const [kapApGrades, setKapApGrades] = useState('');
+  const [dualCred, setDualCred] = useState('');
   const [weightedGpa, setWeightedGpa] = useState(null);
   const [UnweightedGpa, setUnweightedGpa] = useState(null);
   const [savedGpas, setSavedGpas] = useState([]);
@@ -11,6 +12,7 @@ function GPACalculator() {
   const handleCalculateSaved = (grade) => {
     setAcademicGrades(grade.academicGrades || '');
     setKapApGrades(grade.kapApGrades || '');
+    setDualCred(grade.dualCred || '');
     setWeightedGpa(grade.weightedGpa || '');
     setUnweightedGpa(grade.UnweightedGpa || '');
     calculateGPA();
@@ -20,10 +22,12 @@ function GPACalculator() {
   useEffect(() => {
     const savedAcademic = localStorage.getItem('academicGrades');
     const savedKapAp = localStorage.getItem('kapApGrades');
+    const savedDualCred = localStorage.getItem('dualCred');
     const savedGpasData = localStorage.getItem('savedGpas');
 
     if (savedAcademic) setAcademicGrades(savedAcademic);
     if (savedKapAp) setKapApGrades(savedKapAp);
+    if (dualCred) setDualCred (savedDualCred);
     if (savedGpasData) setSavedGpas(JSON.parse(savedGpasData) || []);
   }, []);
 
@@ -34,13 +38,16 @@ function GPACalculator() {
 
   const isDataSaved =
   localStorage.getItem('academicGrades') ||
-  localStorage.getItem('kapApGrades');
+  localStorage.getItem('kapApGrades') || 
+  localStorage.getItem('dualCred');
 
   const handleReset = () => {
     localStorage.removeItem('academicGrades');
     localStorage.removeItem('kapApGrades');
+    localStorage.removeItem('dualCred');
     setAcademicGrades('');
     setKapApGrades('');
+    setDualCred('');
     setCalculationMade(false); 
     alert("Saved data cleared.");
   };
@@ -78,20 +85,23 @@ function GPACalculator() {
   const calculateGPA = () => {
     const acaLetters = { A: 4, B: 3, C: 2, D: 1, F: 0 };
     const kapApLetters = { A: 5, B: 4, C: 3, D: 2, F: 0 };
+    const dualCredLetters = {A: 4.5, B:3.5, C: 2.5, F: 0};
 
     const acaPointsCount = calculatePoints(academicGrades, acaLetters);
+    const dualCredPointsCount = calculatePoints(dualCred, dualCredLetters);
     const unweightedKapApPointsCount = calculatePoints(kapApGrades, acaLetters)
+    const unweightedDualCredPointCount = calculatePoints(dualCred, acaLetters);
     const kapPointsCount = calculatePoints(kapApGrades === 'none' ? '' : kapApGrades, kapApLetters);
 
-    if (acaPointsCount.hasError || kapPointsCount.hasError) {
+    if (acaPointsCount.hasError || kapPointsCount.hasError || dualCredPointsCount.hasError) {
       setWeightedGpa(null);
       setUnweightedGpa(null); 
       return;
     }
 
-    const totalPoints = acaPointsCount.points + kapPointsCount.points;
-    const totalCourses = acaPointsCount.count + kapPointsCount.count;
-    const unweightedPoints = unweightedKapApPointsCount.points + acaPointsCount.points;
+    const totalPoints = acaPointsCount.points + kapPointsCount.points + dualCredPointsCount.points;
+    const totalCourses = acaPointsCount.count + kapPointsCount.count + dualCredPointsCount.count;
+    const unweightedPoints = unweightedKapApPointsCount.points + acaPointsCount.points + unweightedDualCredPointCount.points;
 
     const calculatedWeightedGpa = totalCourses > 0 ? totalPoints / totalCourses : 0;
     const calculatedUnweightedGpa = totalCourses > 0 ? unweightedPoints / totalCourses : 0
@@ -105,6 +115,7 @@ function GPACalculator() {
     if (!localStorage.getItem('academicGrades') && !localStorage.getItem('kapApGrades') ) {
       setAcademicGrades('');
       setKapApGrades('');
+      setDualCred('');
     }
     setWeightedGpa(null);
     setCalculationMade(false);
@@ -116,6 +127,7 @@ function GPACalculator() {
         name: name,
         academicGrades: academicGrades,
         kapApGrades: kapApGrades,
+        dualCred: dualCred,
         weightedGpa: weightedGpa,
         unweightedGpa: UnweightedGpa,
       };
@@ -125,6 +137,7 @@ function GPACalculator() {
       localStorage.setItem('savedGpas', JSON.stringify(updatedSavedGpas));
       setAcademicGrades('');
       setKapApGrades('');
+      setDualCred('');
       setWeightedGpa(null);
       setUnweightedGpa(null);
       setCalculationMade(false);
@@ -155,6 +168,13 @@ function GPACalculator() {
         placeholder="ACA (4.0) courses"
         value={academicGrades}
         onChange={(e) => handleInputChange(e, setAcademicGrades)}
+        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
+      />
+      <input
+        type="text"
+        placeholder="Dual Credit (4.5) courses"
+        value={dualCred}
+        onChange={(e) => handleInputChange(e, setDualCred)}
         className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
       />
       <input
@@ -234,6 +254,9 @@ function GPACalculator() {
       </p>
                     <p>
                       <strong>ACA Courses:</strong> {gpa.academicGrades || 'N/A'}
+                    </p>
+                    <p>
+                      <strong>Dual Courses:</strong> {gpa.dualCred || 'N/A'}
                     </p>
                     <p>
                       <strong>KAP/AP Courses:</strong> {gpa.kapApGrades || 'N/A'}

@@ -143,6 +143,7 @@ function MiddleSchool() {
                 
           <div className="bg-white p-8 mt-5">
             <h2 className="text-2xl font-bold mb-4">JH Class Average</h2>
+            <h2 className = "mb-4">Note: GPA and semester exam calculations for junior high students are the same as for high school students.</h2>
             <input
               type="text"
               placeholder="Major Grades"
@@ -220,7 +221,7 @@ function MiddleSchool() {
                 5. Geometry KAP A  & B (5.0, 1 credit): Anyone who recieved credit for algebra I, either through the CBE or normally, is eligible to take this course.
                 </p>
                 <p className="mt-3">
-                6. Algebra I A  & B (EX, 1 credit): Anyone who recieved credit for 7th grade math KAP, either through the CBE or normally, is eligible to take this course. This course does not affect your high school GPA for class of 2029 onwards.
+                6. Algebra I A  & B (EX, 1 credit): Anyone who recieved credit for 7th grade math KAP, either through the CBE or normally, is eligible to take this course. This course does not affect your high school GPA if you are class of 2029+.
                 </p>
             {showSavedGrades && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">

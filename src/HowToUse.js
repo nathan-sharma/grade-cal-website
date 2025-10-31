@@ -17,7 +17,7 @@ function HowToUse() {
                 <h1 className="text-xl underline mt-8">Class Average Calculator</h1>
                 <div className="px-8 md:px-10 flex justify-center mb-4">
                 <a 
-                    href="https://youtu.be/PR8H34lBb_8" 
+                    href="https://youtu.be/8OE3Z6cQPLQ" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="mt-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 text-center rounded transition duration-300 shadow-lg"

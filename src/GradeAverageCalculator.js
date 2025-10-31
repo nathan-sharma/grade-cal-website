@@ -9,6 +9,7 @@ function GradeAverageCalculator() {
   const [calculationMade, setCalculationMade] = useState(false);
   const [savedGrades, setSavedGrades] = useState([]);
   const [showSavedGrades, setShowSavedGrades] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
   const handleCalculateSaved = (grade) => {
     setMajors(grade.majors || '');
     setMinors(grade.minors || '');
@@ -122,6 +123,8 @@ function GradeAverageCalculator() {
   const handleCloseSaved = () => {
     setShowSavedGrades(false);
   };
+  const handleShowImport = () => { setShowImportModal(true); };
+  const handleCloseImport = () => { setShowImportModal(false); };
   const handleUnsaveAll = () => {
     setSavedGrades([]);
     localStorage.removeItem('savedGrades');
@@ -140,6 +143,7 @@ const handleGradesExtracted = useCallback((extractedClasses) => {
 
     if (extractedClasses.length > 0) {
         const extractedClass = extractedClasses[0];
+        setShowImportModal(false);
         
         // Grade arrays are converted to comma-separated strings for input fields/saving
         const majorsString = extractedClass.majors.join(', ');
@@ -179,7 +183,6 @@ const handleGradesExtracted = useCallback((extractedClasses) => {
 // ... rest of the logic
   return (
     <div className="bg-white p-8">
-        <TxtGradeImporter onGradesExtracted={handleGradesExtracted}/>
       <h2 className="text-2xl font-bold mb-4 mt-4">Class Average</h2>
       <input
         type="text"
@@ -215,6 +218,7 @@ const handleGradesExtracted = useCallback((extractedClasses) => {
         >
           View
         </button>
+      {!results && ( <button className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded ml-3" onClick={handleShowImport}>Import</button>)}
         {results && (
           <>
             <button
@@ -300,6 +304,7 @@ const handleGradesExtracted = useCallback((extractedClasses) => {
           </div>
         </div>
       )}
+      {showImportModal && (<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"><div className="bg-white p-8 rounded-lg w-[90vw] md:w-[40vw] max-h-[70vh] overflow-y-auto overflow-x-auto"><h2 className="text-2xl font-bold mb-4 text-center">Import Grades</h2><TxtGradeImporter onGradesExtracted={handleGradesExtracted} /><div className = "flex items-center justify-center mt-4"><button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded" onClick={handleCloseImport}>Close</button></div></div></div>)}
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // ADDED useCallback
+import TxtGradeImporter from './TxtGradeImporter';
 
 function GradeAverageCalculator() {
   const [majors, setMajors] = useState('');
@@ -130,9 +131,56 @@ function GradeAverageCalculator() {
     setSavedGrades(updatedSavedGrades);
     localStorage.setItem('savedGrades', JSON.stringify(updatedSavedGrades));
   };
+  // ... existing functions like handleRemoveClass, etc.
+
+// --- NEW: Handler for Grades Imported from TXT file ---
+const handleGradesExtracted = useCallback((extractedClasses) => {
+    setResults(null);
+    setCalculationMade(false);
+
+    if (extractedClasses.length > 0) {
+        const extractedClass = extractedClasses[0];
+        
+        // Grade arrays are converted to comma-separated strings for input fields/saving
+        const majorsString = extractedClass.majors.join(', ');
+        const minorsString = extractedClass.minors.join(', ');
+        const othersString = extractedClass.others.join(', ');
+
+        // 1. Load the grades into the calculator inputs
+        setMajors(majorsString);
+        setMinors(minorsString);
+        setOthers(othersString);
+
+        // 2. Also save the imported class immediately
+        const classToSave = {
+            name: extractedClass.name,
+            majors: majorsString,
+            minors: minorsString,
+            others: othersString,
+            results: null, // Results will be calculated by the user
+        };
+        
+        const existingSavedGrades = JSON.parse(localStorage.getItem('savedGrades') || '[]');
+        // Prevent duplicate saves on accidental re-import
+        const isDuplicate = existingSavedGrades.some(g => g.name === classToSave.name && g.majors === classToSave.majors && g.minors === classToSave.minors);
+
+        if (!isDuplicate) {
+            const updatedSavedGrades = [...existingSavedGrades, classToSave];
+            setSavedGrades(updatedSavedGrades);
+            localStorage.setItem('savedGrades', JSON.stringify(updatedSavedGrades));
+        }
+
+        alert(`Successfully imported grades for ${extractedClass.name}. Click 'Calculate' to see the average.`);
+    } else {
+        alert("Import failed: No grades were extracted from the text file.");
+    }
+}, [setMajors, setMinors, setOthers, setSavedGrades]); // Added dependencies
+
+// ... rest of the logic
   return (
     <div className="bg-white p-8">
-      <h2 className="text-2xl font-bold mb-4">Class Average</h2>
+        <TxtGradeImporter onGradesExtracted={handleGradesExtracted}/>
+      <h2 className="text-2xl font-bold mb-4 mt-4">Class Average</h2>
       <input
         type="text"
         placeholder="Major Grades"

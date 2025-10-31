@@ -3,7 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {  /* Your other CSS rules go *after* the @tailwind directives */
+/* Your base styles for the body and code elements */
+body { 
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -15,4 +16,25 @@ body {  /* Your other CSS rules go *after* the @tailwind directives */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* --- CSS for Responsive Video Embed (Required for the video to play and scale) --- */
+.video-responsive {
+    /* 1. Sets the container to fill its parent's width */
+    width: 100%; 
+    /* 2. Establishes the 16:9 aspect ratio (315/560 = 56.25%) by using padding-bottom */
+    padding-bottom: 56.25%; 
+    
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-responsive iframe {
+    /* 3. Forces the iframe to stretch and fill the responsive container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

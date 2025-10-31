@@ -12,8 +12,19 @@ function HowToUse() {
         <div className="App flex flex-col min-h-screen justify-start bg-gray-200">
             <Navbar />
             <h2 className="text-2xl font-semibold mb-4 mt-10 text-center">How to Use </h2>
+            
             <div className="px-8 md:px-10">
                 <h1 className="text-xl underline mt-8">Class Average Calculator</h1>
+                <div className="px-8 md:px-10 flex justify-center mb-4">
+                <a 
+                    href="https://youtu.be/PR8H34lBb_8" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 shadow-lg"
+                >
+                    ▶️ Importing Grades Video Tutorial
+                </a>
+            </div>
                 <p className="mt-3">
                 Input your grades separated by commas into each category. You can also use this as a what-if calculator to see what you need to get your desired grade or how a mock grade could impact your average. If you have a single number repeating for a category (example: 100, 100, 100, 100), just input one number.
                 </p>

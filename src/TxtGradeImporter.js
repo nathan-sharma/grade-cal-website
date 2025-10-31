@@ -144,7 +144,7 @@ function TxtGradeImporter({ onGradesExtracted }) {
 
     return (
         <div className="p-4 bg-white rounded-lg shadow-md border border-blue-400">
-            <h2 className="text-xl font-bold mb-3 text-blue-600">Grade Importer</h2>
+            <h2 className="text-xl font-bold mb-3 text-blue-600">Import Grades</h2>
             <p className="mb-3 text-sm text-gray-700">
                 To import, upload a .txt file for ONE CLASS at a time. For more info, see video tutorial in How to Use.
             </p>

@@ -98,15 +98,23 @@ function TxtGradeImporter({ onGradesExtracted }) {
 
         // 1. Extract the Class Name (from the very first line)
         const classHeaderLine = lines[0].trim();
-        // Regex to extract the class name portion (e.g., 0142A - 21 ENG 2 KAP A)
-        const nameMatch = classHeaderLine.match(/(\d{4}[A-Z]? - \d{1,3}[A-Z]? [A-Z0-9\s/]+[A-Z]A?)/);
         
-        if (!nameMatch) {
-            throw new Error("Could not find a valid class name in the first line.");
+        // --- START OF EDITED LOGIC ---
+        const classworkIndex = classHeaderLine.indexOf('Classwork');
+        let className;
+
+        if (classworkIndex !== -1) {
+            // Take all characters up to "Classwork"
+            className = classHeaderLine.substring(0, classworkIndex).trim();
+        } else {
+            // Fallback if "Classwork" isn't found, though it should be in the expected format.
+            throw new Error("Could not find the expected 'Classwork' marker in the first line.");
         }
         
-        // Use the matched class name, trimming any trailing 'A' or 'Classwork Average X'
-        const className = nameMatch[1].replace(/AClasswork Average \d+/,'').trim();
+        if (className.length === 0) {
+            throw new Error("Extracted class name is empty. Check file format.");
+        }
+        // --- END OF EDITED LOGIC ---
 
         let currentClass = { name: className, majors: [], minors: [], others: [] };
 

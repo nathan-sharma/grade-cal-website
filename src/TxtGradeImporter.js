@@ -20,8 +20,8 @@ const processGrade = (currentClass, category, scoreStr, totalPointsStr) => {
     
     // Final validation and calculation
     if (!isNaN(score) && !isNaN(totalPoints) && totalPoints > 0 && CATEGORIES.includes(category)) {
-        // Exclude 0/100 grades (e.g., SECTIONALS) based on file content observation
-        if (score === 0 && totalPoints === 100) return; 
+        // ⭐️ REMOVED: The previous condition that excluded 0/100 grades is gone. 
+        // All valid scores, including 0, are now processed.
         
         const percentage = (score / totalPoints) * 100;
         const scoreString = percentage.toFixed(2);
